@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:50:14 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/21 17:54:06 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/21 18:10:57 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,19 @@
 # include <gnl/get_next_line.h>
 # include <libft/libft.h>
 
-typedef	struct s_zone
+typedef struct s_zone
 {
+
+
+
+
+
+
+
+
+
+
+	
 	int		image_y;
 	int		image_x;
 	char	*no;

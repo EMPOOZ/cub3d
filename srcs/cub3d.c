@@ -16,7 +16,7 @@ void parsir2(char *str, t_zone *zone, int a)
 	else if (str[i[0]] == "C")
 	{
 		str2 = ft_split(str, " ");
-		zone->F = ft_strdup(str2[1]);
+		zone->S = ft_strdup(str2[1]);
 		free (str2);
 	}
 	return (1);
@@ -67,7 +67,6 @@ int main(int argc, char **argv)
 	t_zone zone;
 	i = 0;
 	a = 0;
-
 	str = NULL;
 	if (argc != 2)
 		return(0);
@@ -79,4 +78,9 @@ int main(int argc, char **argv)
 			parser(str, &zone, i);
 		i++;
 	}
+
+
+
+
+	
 }
