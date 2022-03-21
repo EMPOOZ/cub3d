@@ -64,6 +64,23 @@ int main(int argc, char **argv)
 	int	a;
 	FILE *file;
 	char *str;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	t_zone zone;
 	i = 0;
 	a = 0;
