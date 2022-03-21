@@ -65,9 +65,9 @@ int main(int argc, char **argv)
 	FILE *file;
 	char *str;
 	t_zone zone;
+
 	i = 0;
 	a = 0;
-
 	str = NULL;
 	if (argc != 2)
 		return(0);
@@ -79,12 +79,6 @@ int main(int argc, char **argv)
 			parser(str, &zone, i);
 		i++;
 	}
-
-
-
-
-
-
 
 
 
