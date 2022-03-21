@@ -78,5 +78,8 @@ int main(int argc, char **argv)
 		if (ft_strncmp(str, "\n", 1) == 0 )
 			parser(str, &zone, i);
 		i++;
+
+
+		
 	}
 }
