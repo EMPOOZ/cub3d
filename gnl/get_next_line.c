@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 14:13:11 by rmicheli          #+#    #+#             */
-/*   Updated: 2021/11/28 19:49:54 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/23 20:03:59 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static char	*sos(int fd, char *str)
 			return (NULL);
 		}
 		buf[c] = '\0';
-		str = ft_strjoin(str, buf);
+		str = ft_strjoin1(str, buf);
 	}
 	free(buf);
 	return (str);

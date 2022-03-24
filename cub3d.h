@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:50:14 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/21 18:10:57 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:20:01 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,11 @@
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include <gnl/get_next_line.h>
-# include <libft/libft.h>
+# include "gnl/get_next_line.h"
+# include "libft/libft.h"
 
-typedef struct s_zone
+typedef struct	s_zone
 {
-
-
-
-
-
-
-
-
-
-
-	
 	int		image_y;
 	int		image_x;
 	char	*no;
@@ -39,8 +28,23 @@ typedef struct s_zone
 	char	*we;
 	char	*ea;
 	char	*f;
-	char	*v;
+	char	*c;
 	char	**matrice;
+	char	*matrice_help;
+	int		**matr_int;
+	int		height;
+	int		width;
 }				t_zone;
+
+// typedef struct	s_map
+// {
+// 	int		height;
+// 	int		width;
+// }				t_map;
+
+void	gnl_help(t_zone *zone, int file);
+int		parce_map(t_zone *zone);
+void	free_string1(char **u);
+void	map_int(t_zone *zone);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 09:44:13 by tconwy            #+#    #+#             */
-/*   Updated: 2021/10/18 14:22:32 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/22 12:07:39 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*search_line(const char *s)
 	return ((char *)&s[g]);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin1(char *s1, char *s2)
 {
 	int		y;
 	int		m;
