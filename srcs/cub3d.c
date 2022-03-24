@@ -1,86 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
+/*   Updated: 2022/03/24 15:19:14 by tconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-void parsir2(char *str, t_zone *zone, int a)
+void free_zone(t_zone *zone, int file)
 {
-	int	i[2];
-	char **str2;
-
-	i[0] = 0;
-	i[1] = 0;
-	if (str[i[0]] == "F")
-	{
-		str2 = ft_split(str, " ");
-		zone->F = ft_strdup(str2[1]);
-		free (str2);
-	}
-	else if (str[i[0]] == "C")
-	{
-		str2 = ft_split(str, " ");
-		zone->S = ft_strdup(str2[1]);
-		free (str2);
-	}
-	return (1);
+	free (zone->ea);
+	free (zone->f);
+	free (zone->c);
+	free (zone->no);
+	free (zone->so);
+	free (zone->we);
+	free_string1(zone->matrice);
+	free (zone->matrice_help);
+	close(file);
 }
 
-void parser(char *str, t_zone *zone, int a)
+int	main(int argc, char **argv)
 {
-	int	i;
-	int a;
-	char **str2;
+	int		file;
+	t_zone	zone;
 
-	a = 0;
-	i = 0;
-	if (str[i] == "N" && str[i + 1] == "O")
-	{
-		str2 = ft_split(str, " ");
-		zone->NO = ft_strdup(str2[1]);
-		free (str2);
-	}
-	else if (str[i] == "S" && str[i + 1] == "O")
-	{
-		str2 = ft_split(str, " ");
-		zone->SO = ft_strdup(str2[1]);
-		free (str2);
-	}
-	else if (str[i] == "W" && str[i + 1] == "E")
-	{
-		str2 = ft_split(str, " ");
-		zone->WE = ft_strdup(str2[1]);
-		free (str2);
-	}
-	else if (str[i] == "E" && str[i + 1] == "A")
-	{
-		str2 = ft_split(str, " ");
-		zone->EA = ft_strdup(str2[1]);
-		free (str2);
-	}
-	else
-		parser2(str, zone, a);
-}
-
-int main(int argc, char **argv)
-{
-	int	i;
-	int	a;
-	FILE *file;
-	char *str;
-	t_zone zone;
-	i = 0;
-	a = 0;
-	str = NULL;
+	zone.matrice_help = NULL;
 	if (argc != 2)
-		return(0);
-	if (!(file = open(argv[1], O_RDWR)))
-		return(0);
-	while (str = get_next_line(file))
-	{
-		if (ft_strncmp(str, "\n", 1) == 0 )
-			parser(str, &zone, i);
-		i++;
-	}
-
-
-
-
-	
+		return (0);
+	file = open(argv[1], O_RDWR);
+	gnl_help(&zone, file);
+	if (parce_map(&zone) == 0)
+		return(1);
+	map_int(&zone);
+	free_zone(&zone, file);
+	return (0);
 }
+
