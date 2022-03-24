@@ -1,6 +1,24 @@
 #include "../cub3d.h"
 
-void	pars_texture(t_zone *zone);
+int	pars_texture(char *path, int side, t_zone *zone)
+{
+	t_img	*img;
+
+	while (*path == ' ')
+		path++;
+	img = &zone->texture[side];
+	img->img = mlx_xpm_file_to_image(zone->mlx->mlx_win,
+			path, &img->line_length, &img->height);
+	if (!img->img)
+		return (0);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	if (!img->addr)
+		return (0);
+	return (1);
+}
+
+
 
 void map_int(t_zone *zone)
 {
@@ -25,5 +43,6 @@ void map_int(t_zone *zone)
 		}
 		y++;
 	}
+	create_window(zone->mlx);
 	pars_texture(zone);
 }
