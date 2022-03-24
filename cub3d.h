@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/24 16:49:45 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:25:11 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <fcntl.h>
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
-# include <gnl/get_next_line.h>
-# include <libft/libft.h>
 # include <mlx.h>
 
 typedef struct s_draw
@@ -50,6 +48,16 @@ typedef struct s_draw
 	double	color;
 }				t_draw;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
@@ -76,6 +84,7 @@ typedef struct s_zone
 	int		**matr_int;
 	int		height;
 	int		width;
+	t_img	texture[4];
 	t_mlx	*mlx;
 }				t_zone;
 
@@ -83,5 +92,6 @@ void	gnl_help(t_zone *zone, int file);
 int		parce_map(t_zone *zone);
 void	free_string1(char **u);
 void	map_int(t_zone *zone);
+void	create_window(t_mlx *mlx);
 
 #endif
