@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/21 18:17:02 by rmicheli          #+#    #+#             */
+/*   Updated: 2022/03/21 18:17:06 by rmicheli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-void parsir2(char *str, t_zone *zone, int a)
+void	parsir2(char *str, t_zone *zone, int a)
 {
-	int	i[2];
-	char **str2;
+	int		i[2];
+	char	**str2;
 
 	i[0] = 0;
 	i[1] = 0;
@@ -22,11 +34,11 @@ void parsir2(char *str, t_zone *zone, int a)
 	return (1);
 }
 
-void parser(char *str, t_zone *zone, int a)
+void	parser(char *str, t_zone *zone, int a)
 {
-	int	i;
-	int a;
-	char **str2;
+	int		i;
+	int		a;
+	char	**str2;
 
 	a = 0;
 	i = 0;
@@ -58,38 +70,24 @@ void parser(char *str, t_zone *zone, int a)
 		parser2(str, zone, a);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int	i;
-	int	a;
-	FILE *file;
-	char *str;
-	t_zone zone;
+	int		i;
+	int		a;
+	FILE	*file;
+	char	*str;
+	t_zone	zone;
 
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	i = 0;
 	a = 0;
-
 	str = NULL;
 	if (argc != 2)
-		return(0);
+		return (0);
 	if (!(file = open(argv[1], O_RDWR)))
-		return(0);
+		return (0);
 	while (str = get_next_line(file))
 	{
-		if (ft_strncmp(str, "\n", 1) == 0 )
+		if (ft_strncmp(str, "\n", 1) == 0)
 			parser(str, &zone, i);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:50:14 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/21 17:54:06 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/23 19:38:17 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,48 @@
 # include <fcntl.h>
 # include <gnl/get_next_line.h>
 # include <libft/libft.h>
+# include <mlx.h>
 
-typedef	struct s_zone
+typedef struct s_draw
+{
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	time;
+	double	old_time;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	color;
+}				t_draw;
+
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*mlx_img;
+	void	*mlx_win;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_mlx;
+
+typedef struct s_zone
 {
 	int		image_y;
 	int		image_x;
@@ -28,8 +68,9 @@ typedef	struct s_zone
 	char	*we;
 	char	*ea;
 	char	*f;
-	char	*v;
+	char	*c;
 	char	**matrice;
+	t_mlx	*mlx;
 }				t_zone;
 
 #endif
