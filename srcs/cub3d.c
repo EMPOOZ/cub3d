@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/24 15:19:14 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/24 16:49:42 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void free_zone(t_zone *zone, int file)
+void	free_zone(t_zone *zone, int file)
 {
 	free (zone->ea);
 	free (zone->f);
@@ -36,9 +36,8 @@ int	main(int argc, char **argv)
 	file = open(argv[1], O_RDWR);
 	gnl_help(&zone, file);
 	if (parce_map(&zone) == 0)
-		return(1);
+		return (1);
 	map_int(&zone);
 	free_zone(&zone, file);
 	return (0);
 }
-
