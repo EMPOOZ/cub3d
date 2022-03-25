@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/24 15:17:40 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:13:38 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	dda_init2(t_draw *draw, t_zone *zone)
 {
 	draw->line_height = (int)(zone->image_y / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + zone->image_y / 2;
+	draw->draw_start = -draw->line_height / 2 + zone->image_y / 2 + 100;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + zone->image_y / 2;
+	draw->draw_end = draw->line_height / 2 + zone->image_y / 2 + 100;
 	if (draw->draw_end >= zone->image_y)
 		draw->draw_end = zone->image_y - 1;
 }
@@ -72,7 +72,7 @@ void	step(t_draw *draw, t_zone *zone)
 
 void	dda_init(t_draw *draw, t_zone *zone, int x)
 {
-	draw->camera_x = 2 * x / zone->weight - 1;
+	draw->camera_x = 2 * x / zone->image_x - 1;
 	draw->ray_dir_x = draw->dir_x + draw->plane_x * draw->camera_x;
 	draw->ray_dir_y = draw->dir_y + draw->plane_y * draw->camera_x;
 	draw->map_x = zone->image_x;
@@ -93,7 +93,7 @@ void	dda(t_draw *draw, t_zone *zone)
 	int	x;
 
 	x = -1;
-	while (++x < zone->weight)
+	while (++x < zone->image_x)
 	{
 		dda_init(draw, zone, x);
 		step(draw, zone);
@@ -103,7 +103,6 @@ void	dda(t_draw *draw, t_zone *zone)
 		else
 			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
 		dda_init2(draw, zone);
-		draw->color = 16711680;
-		verline (x, draw, zone);
+		draw_texture(draw, zone);
 	}
 }

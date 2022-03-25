@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:43:32 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/24 16:58:46 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/25 16:10:38 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	create_window(t_mlx *mlx)
 
 int	rendering(t_zone *zone)
 {
-//	create_window(zone->mlx);
 	draw(zone);
 	mlx_put_image_to_window(zone->mlx->mlx_ptr,
 		zone->mlx->mlx_win, zone->mlx->mlx_img, 5120, 2880);
