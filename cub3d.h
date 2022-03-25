@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/25 16:13:41 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:44:43 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,18 @@ typedef struct s_zone
 	int		**matr_int;
 	int		height;
 	int		width;
+	int		floor;
+	int		ceiling;
 	t_img	texture[4];
 	t_mlx	*mlx;
 }				t_zone;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_rgb;
 
 void	gnl_help(t_zone *zone, int file);
 int		parce_map(t_zone *zone);
