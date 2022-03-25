@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/24 17:25:11 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/25 16:07:56 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,23 @@ typedef struct s_zone
 	char	*ea;
 	char	*f;
 	char	*c;
-	char	**matrice;
+	char	**matrice; 
 	char	*matrice_help;
 	int		**matr_int;
 	int		height;
 	int		width;
+	int		floor;
+	int		ceiling;
 	t_img	texture[4];
 	t_mlx	*mlx;
 }				t_zone;
+
+typedef struct	s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_rgb;
 
 void	gnl_help(t_zone *zone, int file);
 int		parce_map(t_zone *zone);
