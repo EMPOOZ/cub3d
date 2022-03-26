@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 14:17:59 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 15:30:16 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	parser3(char *str, t_zone *zone, int a)
 	char	**str2;
 
 	i[0] = 0;
+	i[1] = 0;
 	if (str[i[0]] == 'F')
 	{
 		str2 = ft_split(str, ' ');
@@ -116,7 +117,6 @@ void	gnl_help(t_zone *zone, int file)
 	str[0] = '\0';
 	while (str != NULL)
 	{
-		ft_putstr_fd("123", 1);
 		free (str);
 		str = get_next_line(file);
 		if (str == NULL)

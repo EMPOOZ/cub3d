@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 14:51:08 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 16:35:28 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void	dda_init(t_draw *draw, t_zone *zone, int x)
 
 void	dda(t_draw *draw, t_zone *zone)
 {
-	int	x;
-	int	buffer[2880][5120];
+	int			x;
+	uint32_t	buffer[1000][1000];
 
 	x = -1;
 	while (++x < zone->image_x)
@@ -106,5 +106,6 @@ void	dda(t_draw *draw, t_zone *zone)
 		dda_init2(draw, zone);
 		draw_texture(draw, zone, x, buffer);
 	}
-	draw_buffer(buffer);
+	mlx_put_image_to_window(zone->mlx->mlx_ptr,
+		zone->mlx->mlx_win, zone->mlx->mlx_img, 1000, 1000);
 }

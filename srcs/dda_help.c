@@ -6,34 +6,22 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 14:46:01 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 16:50:52 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x >= 0 && x < 1920 && y >= 0 && y < 1080)
-	{
-		dst = mlx->addr + (y * mlx->line_length + x
-				* (mlx->bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
-}
-
-void	draw_buffer(int buffer[2880][5120], t_zone *zone)
+void	draw_buffer(uint32_t buffer[1000][1000], t_zone *zone)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
-	while (y < 2880)
+	while (y < 1000)
 	{
-		while (x < 5120)
+		while (x < 1000)
 			my_mlx_pixel_put(zone->mlx, x, y, buffer[y][x]);
 	}
 }
@@ -59,10 +47,11 @@ void	texture_init(t_draw *draw, t_zone *zone, t_texture_draw *text_draw)
 			/ 2 + zone->height / 2) * text_draw->step;
 }
 
-void	draw_texture(t_draw *draw, t_zone *zone, int x, int buffer[2880][5120])
+void	draw_texture(t_draw *draw, t_zone *zone, int x,
+	uint32_t buffer[1000][1000])
 {
 	t_texture_draw	text_draw;
-	uint32_t		color;
+	int				color;
 	int				y;
 
 	y = 0;
@@ -76,6 +65,6 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x, int buffer[2880][5120])
 			* text_draw.tex_x * text_draw.tex_y];
 		if (draw->side == 1)
 			color = (color >> 1) & 8355711;
-		buffer[y][x] = color;
+		my_mlx_pixel_put(zone->mlx, x, y, color);
 	}
 }

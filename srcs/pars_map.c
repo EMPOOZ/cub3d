@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 14:25:30 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 15:51:48 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ void	re_parse_martrice(t_zone *zone)
 	while (y < zone->height)
 	{
 		x = ft_strlen(zone->matrice[y]);
+		ft_putnbr_fd(zone->width, 1);
+		ft_putstr_fd(" = width\n", 1);
+		ft_putnbr_fd(x, 1);
+		ft_putstr_fd(" = x\n", 1);
 		while (x < zone->width)
 		{
 			zone->matrice[y] = ft_strjoin1(zone->matrice[y], " ");
@@ -98,7 +102,9 @@ int	parce_map(t_zone *zone)
 	x = 0;
 	zone->matrice = ft_split(zone->matrice_help, '\n');
 	search_zone(zone);
+	ft_putstr_fd("123\n", 1);
 	re_parse_martrice(zone);
+	ft_putstr_fd("456\n", 1);
 	y = 0;
 	free (zone->matrice_help);
 	zone->matrice_help = NULL;
