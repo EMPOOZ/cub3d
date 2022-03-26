@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/26 11:37:10 by tconwy           ###   ########.fr       */
-=======
-/*   Updated: 2022/03/26 12:52:38 by rmicheli         ###   ########.fr       */
->>>>>>> rmicheli
+/*   Updated: 2022/03/26 14:46:19 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +114,12 @@ int		parce_map(t_zone *zone);
 void	free_string1(char **u);
 void	map_int(t_zone *zone);
 void	create_window(t_mlx *mlx);
+int		rendering(t_zone *zone);
+void	dda(t_draw *draw, t_zone *zone);
+void	draw_init(t_draw *draw, t_zone *zone);
+void	draw_texture(t_draw *draw, t_zone *zone, int x,
+			int buffer[2880][5120]);
+void	verline(int x, t_draw *draw, t_zone *zone);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
 #endif
