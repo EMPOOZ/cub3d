@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_int.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 14:23:35 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 15:41:37 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	create_window1(t_mlx *mlx)
 {
 	mlx->mlx_ptr = mlx_init();
 	mlx->mlx_win = mlx_new_window (mlx->mlx_ptr,
-			5120, 2880, "cub3d");
-	mlx->mlx_img = mlx_new_image (mlx->mlx_ptr, 5120, 2880);
+			1000, 1000, "cub3d");
+	mlx->mlx_img = mlx_new_image (mlx->mlx_ptr, 1000, 1000);
 	mlx->addr = mlx_get_data_addr(mlx->mlx_ptr, &mlx->bits_per_pixel,
 			&mlx->line_length, &mlx->endian);
 }

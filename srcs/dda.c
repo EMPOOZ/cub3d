@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 14:24:55 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 16:35:28 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	while_hit(t_draw *draw, t_zone *zone)
 			draw->side = 1;
 		}
 		if (zone->matrice > 0)
-			draw->hit == 1;
+			draw->hit = 1;
 	}
 }
 
@@ -78,11 +78,11 @@ void	dda_init(t_draw *draw, t_zone *zone, int x)
 	draw->map_x = zone->image_x;
 	draw->map_y = zone->image_y;
 	if (draw->ray_dir_x == 0)
-		draw->delta_dist_x = abs(1 / draw->ray_dir_x);
+		draw->delta_dist_x = fabs(1 / draw->ray_dir_x);
 	else
 		draw->delta_dist_x = 1e30;
 	if (draw->ray_dir_y == 0)
-		draw->delta_dist_y = abs(1 / draw->ray_dir_y);
+		draw->delta_dist_y = fabs(1 / draw->ray_dir_y);
 	else
 		draw->delta_dist_y = 1e30;
 	draw->hit = 0;
@@ -90,7 +90,8 @@ void	dda_init(t_draw *draw, t_zone *zone, int x)
 
 void	dda(t_draw *draw, t_zone *zone)
 {
-	int	x;
+	int			x;
+	uint32_t	buffer[1000][1000];
 
 	x = -1;
 	while (++x < zone->image_x)
@@ -103,6 +104,8 @@ void	dda(t_draw *draw, t_zone *zone)
 		else
 			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
 		dda_init2(draw, zone);
-		draw_texture(draw, zone);
+		draw_texture(draw, zone, x, buffer);
 	}
+	mlx_put_image_to_window(zone->mlx->mlx_ptr,
+		zone->mlx->mlx_win, zone->mlx->mlx_img, 1000, 1000);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 14:18:17 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 16:50:44 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,20 @@ int	main(int argc, char **argv)
 	int		file;
 	t_zone	zone;
 
-	ft_putstr_fd("123", 1);
 	zone.matrice_help = NULL;
 	if (argc != 2)
 		return (0);
 	file = open(argv[1], O_RDWR);
+	ft_putstr_fd("123-1\n", 1);
 	gnl_help(&zone, file);
+	ft_putstr_fd("123-2\n", 1);
 	if (parce_map(&zone) == 0)
 		return (1);
+	ft_putstr_fd("123-3\n", 1);
 	map_int(&zone);
+	ft_putstr_fd("123\n", 1);
+	rendering(&zone);
+	ft_putstr_fd("123", 1);
 	free_zone(&zone, file);
 	return (0);
 }

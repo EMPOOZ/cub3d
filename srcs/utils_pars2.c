@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:21:25 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 16:52:54 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 16:55:57 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	search_zone(t_zone *zone)
 
 	x = 0;
 	y = 0;
+	zone->width = 0;
+	zone->height = 0;
 	while (zone->matrice[y])
 	{
 		x = 0;

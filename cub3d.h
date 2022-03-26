@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 15:31:46 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 16:56:58 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
 # include <mlx.h>
+
+typedef struct s_texture_draw
+{
+	double	wall_x;
+	int		tex_num;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
+}				t_texture_draw;
 
 typedef struct s_draw
 {
@@ -46,7 +56,6 @@ typedef struct s_draw
 	int		draw_start;
 	int		draw_end;
 	double	color;
-	int		tex_num;
 }				t_draw;
 
 typedef struct s_img
@@ -114,5 +123,14 @@ int		color_valid_rgb(t_rgb rgb);
 void	*array_clear(void **ptr, void *(f)(void *));
 int		array_s(void **str);
 void	search_zone(t_zone *zone);
+void	create_window(t_mlx *mlx);
+int		rendering(t_zone *zone);
+void	dda(t_draw *draw, t_zone *zone);
+void	draw_init(t_draw *draw, t_zone *zone);
+void	draw_texture(t_draw *draw, t_zone *zone, int x,
+			uint32_t buffer[1000][1000]);
+void	verline(int x, t_draw *draw, t_zone *zone);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	draw_buffer(uint32_t buffer[1000][1000], t_zone *zone);
 
 #endif
