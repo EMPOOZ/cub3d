@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 14:48:07 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 14:51:21 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	gnl_help(t_zone *zone, int file);
 int		parce_map(t_zone *zone);
 void	free_string1(char **u);
 void	map_int(t_zone *zone);
+<<<<<<< HEAD
 void	create_window1(t_mlx *mlx);
 void	*ft_free(void *ptr);
 int		pars_texture(char *path, int side, t_zone *zone);
@@ -123,5 +124,15 @@ int		color_valid_rgb(t_rgb rgb);
 void	*array_clear(void **ptr, void *(f)(void *));
 int		array_s(void **str);
 void	search_zone(t_zone *zone);
+=======
+void	create_window(t_mlx *mlx);
+int		rendering(t_zone *zone);
+void	dda(t_draw *draw, t_zone *zone);
+void	draw_init(t_draw *draw, t_zone *zone);
+void	draw_texture(t_draw *draw, t_zone *zone, int x,
+			int buffer[2880][5120]);
+void	verline(int x, t_draw *draw, t_zone *zone);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+>>>>>>> rmicheli
 
 #endif
