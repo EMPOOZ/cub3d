@@ -133,7 +133,11 @@ void map_int(t_zone *zone)
 			else if (zone->matrice[y][x] == ' ' || zone->matrice[y][x] == '0')
 				zone->matr_int[y][x] = 0;
 			else if (zone->matrice[y][x] == 'W')
+			{
+				zone->pos_y = y;
+				zone->pos_x = x;
 				zone->matr_int[y][x] = 3;
+			}
 			x++;
 		}
 		y++;
