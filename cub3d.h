@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 11:37:10 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 13:42:55 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,19 @@ typedef struct s_rgb
 	int	b;
 }				t_rgb;
 
+void	*free_array(void **ptr, void *(f)(void *));
+int		init_color(t_rgb rgb);
 void	gnl_help(t_zone *zone, int file);
 int		parce_map(t_zone *zone);
 void	free_string1(char **u);
 void	map_int(t_zone *zone);
-void	create_window(t_mlx *mlx);
+void	create_window1(t_mlx *mlx);
+void	*ft_free(void *ptr);
+int		pars_texture(char *path, int side, t_zone *zone);
+t_rgb	new_rgb(int r, int g, int b);
+int		color_valid_rgb(t_rgb rgb);
+void	*array_clear(void **ptr, void *(f)(void *));
+int		array_s(void **str);
+void	search_zone(t_zone *zone);
 
 #endif
