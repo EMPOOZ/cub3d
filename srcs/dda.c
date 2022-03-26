@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/25 16:13:38 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 13:20:07 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	dda_init(t_draw *draw, t_zone *zone, int x)
 void	dda(t_draw *draw, t_zone *zone)
 {
 	int	x;
+	int	buffer[5120][2880];
 
 	x = -1;
 	while (++x < zone->image_x)
@@ -103,6 +104,6 @@ void	dda(t_draw *draw, t_zone *zone)
 		else
 			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
 		dda_init2(draw, zone);
-		draw_texture(draw, zone);
+		draw_texture(draw, zone, x, &buffer);
 	}
 }
