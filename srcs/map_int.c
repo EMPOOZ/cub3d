@@ -1,86 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_int.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
+/*   Updated: 2022/03/26 14:23:35 by tconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-int	pars_texture(char *path, int side, t_zone *zone)
+void	create_window1(t_mlx *mlx)
 {
-	t_img	*img;
-
-	while (*path == ' ')
-		path++;
-	img = &zone->texture[side];
-	img->img = mlx_xpm_file_to_image(zone->mlx->mlx_win,
-			path, &img->line_length, &img->height);
-	if (!img->img)
-		return (0);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
-	if (!img->addr)
-		return (0);
-	return (1);
+	mlx->mlx_ptr = mlx_init();
+	mlx->mlx_win = mlx_new_window (mlx->mlx_ptr,
+			5120, 2880, "cub3d");
+	mlx->mlx_img = mlx_new_image (mlx->mlx_ptr, 5120, 2880);
+	mlx->addr = mlx_get_data_addr(mlx->mlx_ptr, &mlx->bits_per_pixel,
+			&mlx->line_length, &mlx->endian);
 }
 
-t_rgb	new_rgb(int r, int g, int b)
-{
-	t_rgb	rgb;
-
-	rgb.r = r;
-	rgb.g = g;
-	rgb.b = b;
-	return (rgb);
-}
-
-int	color_valid_rgb(t_rgb rgb)
-{
-	if (rgb.r > 255 || rgb.r < 0)
-		return(0);
-	if (rgb.g > 255 || rgb.g < 0)
-		return (0);
-	if (rgb.b > 255 || rgb.b < 0)
-		return (0);
-	return (1);
-}
-
-void	*array_clear(void **ptr, void *(f)(void *))
-{
-	while (ptr && *ptr && f)
-	{
-		*ptr = f(*ptr);
-		ptr++;
-	}
-	return (NULL);
-}
-
-void	*free_array(void **ptr, void *(f)(void *))
-{
-	int	a;
-
-	a = 0;
-	if (ptr == NULL)
-		return (NULL);
-	if (ptr != NULL && ptr[a] != NULL)
-		array_clear(ptr, f);
-	free(ptr);
-	return (NULL);
-}
-
-int	init_color(t_rgb rgb)
-{
-	int	color_int;
-
-	color_int = rgb.r << 16 | rgb.g << 8 | rgb.b;
-	return (color_int);
-}
-
-int pars_f_c(t_zone *zone, char *colors, char id)
+int	parse_f_c(t_zone *zone, char *colors, char id)
 {
 	t_rgb	rgb;
 	char	**str;
 	int		error;
 
 	error = 0;
-	while (*colors, ' ')
+	while (*colors == ' ')
 		colors++;
 	str = ft_split(colors, ',');
-	if (ft_array_size((void **)str) != 3)
+	if (array_s((void **)str) != 3)
 		error = 10;
 	else
 	{
@@ -88,10 +40,10 @@ int pars_f_c(t_zone *zone, char *colors, char id)
 		if (!color_valid_rgb(rgb))
 			error = 10;
 	}
-	free_array((void **)str, free);
+	free_array((void **)str, ft_free);
 	if (error)
 		return (0);
-	if (id = 'F')
+	if (id == 'F')
 		zone->floor = init_color(rgb);
 	else
 		zone->ceiling = init_color(rgb);
@@ -114,14 +66,11 @@ int	parse_identifier(t_zone *zone)
 	return (valid);
 }
 
-
-void map_int(t_zone *zone)
+void	map_int_help(t_zone *zone)
 {
 	int	y;
 	int	x;
 
-	y = 0;
-	zone->matr_int = (int **)malloc(sizeof(int *) * zone->height);
 	while (zone->matrice[y])
 	{
 		x = 0;
@@ -142,7 +91,14 @@ void map_int(t_zone *zone)
 		}
 		y++;
 	}
-	create_window(zone->mlx);
+}
+
+void	map_int(t_zone *zone)
+{
+	zone->matr_int = (int **)malloc(sizeof(int *) * zone->height);
+	map_int_help(zone);
+	zone->mlx = malloc(sizeof(zone->mlx));
+	create_window1(zone->mlx);
 	if (parse_identifier(zone) == 0)
 		exit (1);
 }

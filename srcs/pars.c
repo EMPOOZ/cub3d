@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/24 14:56:57 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 14:17:59 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	gnl_help(t_zone *zone, int file)
 	str[0] = '\0';
 	while (str != NULL)
 	{
+		ft_putstr_fd("123", 1);
 		free (str);
 		str = get_next_line(file);
 		if (str == NULL)

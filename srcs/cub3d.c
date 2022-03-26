@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/24 16:49:42 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 14:18:17 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	int		file;
 	t_zone	zone;
 
+	ft_putstr_fd("123", 1);
 	zone.matrice_help = NULL;
 	if (argc != 2)
 		return (0);
