@@ -6,7 +6,11 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/26 11:37:10 by tconwy           ###   ########.fr       */
+=======
+/*   Updated: 2022/03/26 12:52:38 by rmicheli         ###   ########.fr       */
+>>>>>>> rmicheli
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +23,16 @@
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
 # include <mlx.h>
+
+typedef struct s_texture_draw
+{
+	double	wall_x;
+	int		tex_num;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
+}				t_texture_draw;
 
 typedef struct s_draw
 {
@@ -46,7 +60,6 @@ typedef struct s_draw
 	int		draw_start;
 	int		draw_end;
 	double	color;
-	int		tex_num;
 }				t_draw;
 
 typedef struct s_img
