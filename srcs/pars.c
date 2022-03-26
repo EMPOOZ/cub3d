@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 14:17:59 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/26 16:52:44 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	parser3(char *str, t_zone *zone, int a)
 	char	**str2;
 
 	i[0] = 0;
+	i[1] = 0;
 	if (str[i[0]] == 'F')
 	{
 		str2 = ft_split(str, ' ');
