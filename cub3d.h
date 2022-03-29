@@ -6,19 +6,24 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 16:56:58 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/29 13:11:57 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include <unistd.h>
-# include <math.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "gnl/get_next_line.h"
-# include "libft/libft.h"
-# include <mlx.h>
+# include	<stdarg.h>
+# include	<stdio.h>
+# include	<limits.h>
+# include	<stddef.h>
+# include	<stdlib.h>
+# include	<unistd.h>
+# include	<math.h>
+# include	<complex.h>
+# include	<fcntl.h>
+# include	<mlx.h>
+# include	"gnl/get_next_line.h"
+# include	"libft/libft.h"
 
 typedef struct s_texture_draw
 {
