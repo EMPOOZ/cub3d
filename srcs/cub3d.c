@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 16:50:44 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/27 11:40:02 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	ft_putstr_fd("123-3\n", 1);
 	map_int(&zone);
 	ft_putstr_fd("123\n", 1);
-	rendering(&zone);
+	// rendering(&zone);
 	ft_putstr_fd("123", 1);
 	free_zone(&zone, file);
 	return (0);

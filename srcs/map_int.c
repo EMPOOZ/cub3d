@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_int.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 15:41:37 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/27 14:50:19 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	parse_identifier(t_zone *zone)
 	valid = pars_texture(zone->ea, 3, zone);
 	valid = parse_f_c(zone, zone->f, 'F');
 	valid = parse_f_c(zone, zone->c, 'C');
+	printf ("\n%d\n", valid);
 	if (valid == -1)
 		return (0);
 	return (valid);
@@ -85,6 +86,8 @@ void	map_int_help(t_zone *zone)
 			{
 				zone->pos_y = y;
 				zone->pos_x = x;
+				printf("\n%d = y\n", zone->pos_y);
+				printf("\n%d = x\n", zone->pos_x);
 				zone->matr_int[y][x] = 3;
 			}
 			x++;

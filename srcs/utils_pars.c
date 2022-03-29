@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:14:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 13:14:13 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/27 15:13:51 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ int	pars_texture(char *path, int side, t_zone *zone)
 
 	while (*path == ' ')
 		path++;
+	printf ("\n%d = l\n", img->line_length);
 	img = &zone->texture[side];
-	img->img = mlx_xpm_file_to_image(zone->mlx->mlx_win,
+	img->img = mlx_xpm_file_to_image(zone->mlx->mlx_ptr,
 			path, &img->line_length, &img->height);
+	printf ("\n%d = l\n", img->line_length);
 	if (!img->img)
 		return (0);
+	ft_putstr_fd("\nqwe\n", 1);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	if (!img->addr)
