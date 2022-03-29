@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 15:51:48 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:54:45 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,6 @@ void	re_parse_martrice(t_zone *zone)
 	while (y < zone->height)
 	{
 		x = ft_strlen(zone->matrice[y]);
-		ft_putnbr_fd(zone->width, 1);
-		ft_putstr_fd(" = width\n", 1);
-		ft_putnbr_fd(x, 1);
-		ft_putstr_fd(" = x\n", 1);
 		while (x < zone->width)
 		{
 			zone->matrice[y] = ft_strjoin1(zone->matrice[y], " ");

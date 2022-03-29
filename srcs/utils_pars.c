@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pars.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:14:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 13:14:13 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/29 13:05:50 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,28 @@ void	*ft_free(void *ptr)
 int	pars_texture(char *path, int side, t_zone *zone)
 {
 	t_img	*img;
+	char	*str;
 
-	while (*path == ' ')
-		path++;
+	str = (char *)malloc(sizeof(char) * ft_strlen(path));
+	ft_strlcpy(str, path, ft_strlen(path));
+	while (*str == ' ')
+		str++;
+	if (!zone->mlx->mlx_ptr)
+		ft_putstr_fd("ERROR.666\n", 1);
+	zone->texture[side].img = NULL;
 	img = &zone->texture[side];
-	img->img = mlx_xpm_file_to_image(zone->mlx->mlx_win,
-			path, &img->line_length, &img->height);
+	printf("\n%d = line_leng1\n%d = height1\n%s = path\n", img->line_length, img->height, str);
+	img->img = mlx_xpm_file_to_image(zone->mlx->mlx_ptr,
+			str, &img->line_length, &img->height);
+	printf("\n%d = line_leng2\n%d = height2\n", img->line_length, img->height);
 	if (!img->img)
+	{
+		ft_putstr_fd("ERROR", 1);
 		return (0);
+	}
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
+	printf("\n%s == asd\n", img->addr);
 	if (!img->addr)
 		return (0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 16:50:44 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:16:37 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,21 @@ void	free_zone(t_zone *zone, int file)
 int	main(int argc, char **argv)
 {
 	int		file;
-	t_zone	zone;
+	t_zone	*zone;
 
-	zone.matrice_help = NULL;
+	zone = (t_zone *)malloc(sizeof(t_zone));
+	zone->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	zone->matrice_help = NULL;
 	if (argc != 2)
 		return (0);
 	file = open(argv[1], O_RDWR);
-	ft_putstr_fd("123-1\n", 1);
-	gnl_help(&zone, file);
-	ft_putstr_fd("123-2\n", 1);
-	if (parce_map(&zone) == 0)
+	create_window(zone->mlx);
+	gnl_help(zone, file);
+	if (parce_map(zone) == 0)
 		return (1);
-	ft_putstr_fd("123-3\n", 1);
-	map_int(&zone);
-	ft_putstr_fd("123\n", 1);
-	rendering(&zone);
-	ft_putstr_fd("123", 1);
-	free_zone(&zone, file);
+	map_int(zone);
+	rendering(zone);
+	mlx_loop(zone->mlx->mlx_ptr);
+	free_zone(zone, file);
 	return (0);
 }

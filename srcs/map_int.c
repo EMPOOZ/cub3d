@@ -6,21 +6,11 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 15:41:37 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/27 14:50:47 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	create_window1(t_mlx *mlx)
-{
-	mlx->mlx_ptr = mlx_init();
-	mlx->mlx_win = mlx_new_window (mlx->mlx_ptr,
-			1000, 1000, "cub3d");
-	mlx->mlx_img = mlx_new_image (mlx->mlx_ptr, 1000, 1000);
-	mlx->addr = mlx_get_data_addr(mlx->mlx_ptr, &mlx->bits_per_pixel,
-			&mlx->line_length, &mlx->endian);
-}
 
 int	parse_f_c(t_zone *zone, char *colors, char id)
 {
@@ -56,11 +46,17 @@ int	parse_identifier(t_zone *zone)
 
 	valid = -1;
 	valid = pars_texture(zone->no, 0, zone);
+	printf("\nasd1\n");
 	valid = pars_texture(zone->so, 1, zone);
+	printf("\nasd2\n");
 	valid = pars_texture(zone->we, 2, zone);
+	printf("\nasd3\n");
 	valid = pars_texture(zone->ea, 3, zone);
+	printf("\nasd4\n");
 	valid = parse_f_c(zone, zone->f, 'F');
+	printf("\nasd5\n");
 	valid = parse_f_c(zone, zone->c, 'C');
+	printf("\nasd6\n");
 	if (valid == -1)
 		return (0);
 	return (valid);
@@ -84,7 +80,9 @@ void	map_int_help(t_zone *zone)
 			else if (zone->matrice[y][x] == 'W')
 			{
 				zone->pos_y = y;
+				printf("\n%d = y\n", y);
 				zone->pos_x = x;
+				printf("\n%d = x\n", x);
 				zone->matr_int[y][x] = 3;
 			}
 			x++;
@@ -97,8 +95,6 @@ void	map_int(t_zone *zone)
 {
 	zone->matr_int = (int **)malloc(sizeof(int *) * zone->height);
 	map_int_help(zone);
-	zone->mlx = malloc(sizeof(zone->mlx));
-	create_window1(zone->mlx);
 	if (parse_identifier(zone) == 0)
 		exit (1);
 }
