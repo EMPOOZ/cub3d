@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 13:35:35 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:03:43 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	texture_init(t_draw *draw, t_zone *zone, t_texture_draw *text_draw)
 		text_draw->tex_x = zone->texture[0].line_length
 			- text_draw->tex_x - 1;
 	text_draw->step = 1.0 * zone->texture[0].line_length / zone->height;
-	text_draw->tex_pos = (draw->draw_start - 100 - zone->height
+	text_draw->tex_pos = (draw->draw_start - 100 - 1000
 			/ 2 + zone->height / 2) * text_draw->step;
 }
 
@@ -74,5 +74,6 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x)
 		if (draw->side == 1)
 			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(zone->mlx, x, y, color);
+		y++;
 	}
 }
