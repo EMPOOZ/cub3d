@@ -6,11 +6,19 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 13:06:56 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:35:35 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	draw_background(t_zone *zone)
+{
+	int	*image;
+
+	ft_bzero(zone->mlx->addr, 1000 * 1000 * (zone->mlx->bits_per_pixel / 8));
+	image = (int *)(zone->mlx->addr);
+}
 
 void	draw_buffer(uint32_t buffer[1000][1000], t_zone *zone)
 {
@@ -55,24 +63,16 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x)
 	int				y;
 
 	y = 0;
-	// ft_putstr_fd("\n1.1\n", 1);
 	texture_init(draw, zone, &text_draw);
-	// ft_putstr_fd("\n1.2\n", 1);
 	while (y < draw->draw_end)
 	{
-		// ft_putstr_fd("\n1.3\n", 1);
 		text_draw.tex_y = (int)text_draw.tex_pos & (zone->texture[0].height
 				- 1);
-		// ft_putstr_fd("\n1.4\n", 1);
 		text_draw.tex_pos += text_draw.step;
-		// ft_putstr_fd("\n1.5\n", 1);
 		color = zone->texture[text_draw.tex_num].addr[zone->texture[0].height
 			* text_draw.tex_x * text_draw.tex_y];
-		// ft_putstr_fd("\n1.6\n", 1);
 		if (draw->side == 1)
 			color = (color >> 1) & 8355711;
-		// ft_putstr_fd("\n1.7\n", 1);
 		my_mlx_pixel_put(zone->mlx, x, y, color);
-		// ft_putstr_fd("\n1.8\n", 1);
 	}
 }

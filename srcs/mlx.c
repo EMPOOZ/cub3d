@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:48:25 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 15:03:00 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:36:18 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && x < 1920 && y >= 0 && y < 1080)
+	if (x >= 0 && x < 1000 && y >= 0 && y < 1000)
 	{
 		dst = mlx->addr + (y * mlx->line_length + x
 				* (mlx->bits_per_pixel / 8));

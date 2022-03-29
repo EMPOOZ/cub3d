@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 13:09:14 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:33:55 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ void	draw_init(t_draw *draw, t_zone *zone);
 void	draw_texture(t_draw *draw, t_zone *zone, int x);
 void	verline(int x, t_draw *draw, t_zone *zone);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	draw_background(t_zone *zone);
 
 #endif

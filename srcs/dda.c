@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 13:06:55 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:31:36 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	step(t_draw *draw, t_zone *zone)
 
 void	dda_init(t_draw *draw, t_zone *zone, int x)
 {
-	draw->camera_x = 2 * x / (double)zone->width - 1;
+	draw->camera_x = 2 * x / (double)1000 - 1;
 	draw->ray_dir_x = draw->dir_x + draw->plane_x * draw->camera_x;
 	draw->ray_dir_y = draw->dir_y + draw->plane_y * draw->camera_x;
 	draw->map_x = (int)draw->pos_x;
@@ -93,25 +93,19 @@ void	dda(t_draw *draw, t_zone *zone)
 	int			x;
 
 	x = -1;
-	while (++x < zone->width)
+	while (++x < 1000)
 	{
-		// ft_putstr_fd("\n1\n", 1);
 		dda_init(draw, zone, x);
-		// ft_putstr_fd("\n2\n", 1);
 		step(draw, zone);
-		// ft_putstr_fd("\n3\n", 1);
 		while_hit(draw, zone);
-		// ft_putstr_fd("\n4\n", 1);
 		if (draw->side == 0)
 			draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
 		else
 			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
-		// ft_putstr_fd("\n5\n", 1);
 		dda_init2(draw, zone);
-		// ft_putstr_fd("\n6\n", 1);
 		draw_texture(draw, zone, x);
-		// ft_putstr_fd("\n7\n", 1);
 	}
 	mlx_put_image_to_window(zone->mlx->mlx_ptr,
 		zone->mlx->mlx_win, zone->mlx->mlx_img, 1000, 1000);
+	draw_background(zone);
 }
