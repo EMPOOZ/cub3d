@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 13:28:56 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/29 14:09:05 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	dda_init2(t_draw *draw, t_zone *zone)
 {
-	draw->line_height = (int)(zone->height / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + zone->height / 2 + 100;
+	draw->line_height = (int)(1000 / draw->perp_wall_dist);
+	draw->draw_start = -draw->line_height / 2 + 1000 / 2 + 100;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + zone->height / 2 + 100;
-	if (draw->draw_end >= zone->height)
-		draw->draw_end = zone->height - 1;
+	draw->draw_end = draw->line_height / 2 + 1000 / 2 + 100;
+	if (draw->draw_end >= 1000)
+		draw->draw_end = 1000 - 1;
 }
 
 void	while_hit(t_draw *draw, t_zone *zone)
@@ -72,7 +72,7 @@ void	step(t_draw *draw, t_zone *zone)
 
 void	dda_init(t_draw *draw, t_zone *zone, int x)
 {
-	draw->camera_x = 2 * x / (double)zone->width - 1;
+	draw->camera_x = 2 * x / (double)1000 - 1;
 	draw->ray_dir_x = draw->dir_x + draw->plane_x * draw->camera_x;
 	draw->ray_dir_y = draw->dir_y + draw->plane_y * draw->camera_x;
 	draw->map_x = (int)draw->pos_x;
@@ -93,7 +93,7 @@ void	dda(t_draw *draw, t_zone *zone)
 	int			x;
 
 	x = -1;
-	while (++x < zone->width)
+	while (++x < 1000)
 	{
 		dda_init(draw, zone, x);
 		step(draw, zone);
@@ -107,4 +107,5 @@ void	dda(t_draw *draw, t_zone *zone)
 	}
 	mlx_put_image_to_window(zone->mlx->mlx_ptr,
 		zone->mlx->mlx_win, zone->mlx->mlx_img, 1000, 1000);
+	draw_background(zone);
 }
