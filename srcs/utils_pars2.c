@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pars2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:21:25 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 16:09:17 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:39:55 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,14 @@ void	search_zone(t_zone *zone)
 		y++;
 	}
 	zone->height = y;
+}
+
+void	free_string1(char **u)
+{
+	int	y;
+
+	y = 0;
+	while (u[y])
+		free(u[y++]);
+	free(u);
 }

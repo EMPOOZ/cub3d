@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 15:30:16 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:39:49 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_string1(char **u)
+int	parser4(char *str, t_zone *zone, int a)
 {
-	int	y;
-
-	y = 0;
-	while (u[y])
-		free(u[y++]);
-	free(u);
+	if (zone->matrice_help == NULL)
+		zone->matrice_help = ft_strdup(str);
+	else
+		zone->matrice_help = ft_strjoin1(zone->matrice_help, str);
+	return (1);
 }
 
 int	parser3(char *str, t_zone *zone, int a)
@@ -44,13 +43,8 @@ int	parser3(char *str, t_zone *zone, int a)
 		return (1);
 	}
 	else
-	{
-		if (zone->matrice_help == NULL)
-			zone->matrice_help = ft_strdup(str);
-		else
-			zone->matrice_help = ft_strjoin1(zone->matrice_help, str);
-		return (1);
-	}
+		if (parser4(str, zone, a) != 1)
+			return (0);
 	return (0);
 }
 
