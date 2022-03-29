@@ -6,45 +6,47 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:43:32 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 16:50:38 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:06:41 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	drawing(t_draw *draw, t_zone *zone)
+void	draw_init(t_draw *draw, t_zone *zone)
 {
-	while (1)
-	{
-		ft_putstr_fd("456\n", 1);
-		dda(draw, zone);
-		ft_putstr_fd("456\n", 1);
-	}
-}
-
-void	draw(t_zone *zone)
-{
-	t_draw	*draw;
-
-	draw_init(draw, zone);
-	drawing(draw, zone);
+	draw->pos_x = (float)zone->pos_x;
+	draw->pos_y = (float)zone->pos_y;
+	draw->dir_x = -1.0;
+	draw->dir_y = 0.0;
+	draw->plane_x = 0.0;
+	draw->plane_y = 0.66;
+	draw->time = 0;
+	draw->old_time = 0;
 }
 
 void	create_window(t_mlx *mlx)
 {
+	ft_putstr_fd("INIT MLX\n", 1);
 	mlx->mlx_ptr = mlx_init();
-	mlx->mlx_win = mlx_new_window (mlx->mlx_ptr,
-			1000, 1000, "cub3d");
+	if (!mlx->mlx_ptr)
+		ft_putstr_fd("ERROR.1\n", 1);
+	mlx->mlx_win = mlx_new_window (mlx->mlx_ptr, 1000, 1000, "cub3d");
+	if (!mlx->mlx_ptr)
+		ft_putstr_fd("ERROR.2\n", 1);
 	mlx->mlx_img = mlx_new_image (mlx->mlx_ptr, 1000, 1000);
+	if (!mlx->mlx_ptr)
+		ft_putstr_fd("ERROR.3\n", 1);
 	mlx->addr = mlx_get_data_addr(mlx->mlx_ptr, &mlx->bits_per_pixel,
 			&mlx->line_length, &mlx->endian);
-	my_mlx_pixel_put(mlx, 500, 500, 1244523);
-	mlx_put_image_to_window(mlx->mlx_ptr,
-		mlx->mlx_win, mlx->mlx_img, 1000, 1000);
+	if (!mlx->mlx_ptr)
+		ft_putstr_fd("ERROR.4\n", 1);
 }
 
 int	rendering(t_zone *zone)
 {
-	draw(zone);
+	t_draw	draw;
+
+	draw_init(&draw, zone);
+	dda(&draw, zone);
 	return (0);
 }

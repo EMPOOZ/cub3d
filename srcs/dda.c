@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/26 16:35:28 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:06:55 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	dda_init2(t_draw *draw, t_zone *zone)
 {
-	draw->line_height = (int)(zone->image_y / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + zone->image_y / 2 + 100;
+	draw->line_height = (int)(zone->height / draw->perp_wall_dist);
+	draw->draw_start = -draw->line_height / 2 + zone->height / 2 + 100;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + zone->image_y / 2 + 100;
-	if (draw->draw_end >= zone->image_y)
-		draw->draw_end = zone->image_y - 1;
+	draw->draw_end = draw->line_height / 2 + zone->height / 2 + 100;
+	if (draw->draw_end >= zone->height)
+		draw->draw_end = zone->height - 1;
 }
 
 void	while_hit(t_draw *draw, t_zone *zone)
@@ -39,7 +39,7 @@ void	while_hit(t_draw *draw, t_zone *zone)
 			draw->map_y += draw->step_y;
 			draw->side = 1;
 		}
-		if (zone->matrice > 0)
+		if (zone->matr_int[draw->map_x][draw->map_y] > 0)
 			draw->hit = 1;
 	}
 }
@@ -49,34 +49,34 @@ void	step(t_draw *draw, t_zone *zone)
 	if (draw->ray_dir_x < 0)
 	{
 		draw->step_x = -1;
-		draw->side_dist_x = (zone->image_x - draw->map_x) * draw->delta_dist_x;
+		draw->side_dist_x = (draw->pos_x - draw->map_x) * draw->delta_dist_x;
 	}
 	else
 	{
 		draw->step_x = 1;
-		draw->side_dist_x = (draw->side_dist_x + 1.0 - zone->image_x)
+		draw->side_dist_x = (draw->side_dist_x + 1.0 - draw->pos_x)
 			* draw->delta_dist_x;
 	}
 	if (draw->ray_dir_y < 0)
 	{
 		draw->step_y = -1;
-		draw->side_dist_y = (zone->image_y - draw->map_y) * draw->delta_dist_y;
+		draw->side_dist_y = (draw->pos_y - draw->map_y) * draw->delta_dist_y;
 	}
 	else
 	{
 		draw->step_y = 1;
-		draw->side_dist_y = (draw->side_dist_y + 1.0 - zone->image_y)
+		draw->side_dist_y = (draw->side_dist_y + 1.0 - draw->pos_y)
 			* draw->delta_dist_y;
 	}
 }
 
 void	dda_init(t_draw *draw, t_zone *zone, int x)
 {
-	draw->camera_x = 2 * x / zone->image_x - 1;
+	draw->camera_x = 2 * x / (double)zone->width - 1;
 	draw->ray_dir_x = draw->dir_x + draw->plane_x * draw->camera_x;
 	draw->ray_dir_y = draw->dir_y + draw->plane_y * draw->camera_x;
-	draw->map_x = zone->image_x;
-	draw->map_y = zone->image_y;
+	draw->map_x = (int)draw->pos_x;
+	draw->map_y = (int)draw->pos_y;
 	if (draw->ray_dir_x == 0)
 		draw->delta_dist_x = fabs(1 / draw->ray_dir_x);
 	else
@@ -91,20 +91,26 @@ void	dda_init(t_draw *draw, t_zone *zone, int x)
 void	dda(t_draw *draw, t_zone *zone)
 {
 	int			x;
-	uint32_t	buffer[1000][1000];
 
 	x = -1;
-	while (++x < zone->image_x)
+	while (++x < zone->width)
 	{
+		// ft_putstr_fd("\n1\n", 1);
 		dda_init(draw, zone, x);
+		// ft_putstr_fd("\n2\n", 1);
 		step(draw, zone);
+		// ft_putstr_fd("\n3\n", 1);
 		while_hit(draw, zone);
+		// ft_putstr_fd("\n4\n", 1);
 		if (draw->side == 0)
 			draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
 		else
 			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
+		// ft_putstr_fd("\n5\n", 1);
 		dda_init2(draw, zone);
-		draw_texture(draw, zone, x, buffer);
+		// ft_putstr_fd("\n6\n", 1);
+		draw_texture(draw, zone, x);
+		// ft_putstr_fd("\n7\n", 1);
 	}
 	mlx_put_image_to_window(zone->mlx->mlx_ptr,
 		zone->mlx->mlx_win, zone->mlx->mlx_img, 1000, 1000);
