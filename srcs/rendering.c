@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:43:32 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 14:01:38 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/29 14:07:23 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ void	draw_init(t_draw *draw, t_zone *zone)
 
 void	create_window(t_mlx *mlx)
 {
-	printf ("\n%d = l\n", mlx->line_length);
-	printf ("\n%d = e\n", mlx->endian);
+	printf("\n%d\n", mlx->line_length);
 	mlx->mlx_ptr = mlx_init();
 	mlx->mlx_win = mlx_new_window (mlx->mlx_ptr, 1000, 1000, "cub3d");
 	mlx->mlx_img = mlx_new_image (mlx->mlx_ptr, 1000, 1000);
-	mlx->addr = mlx_get_data_addr(mlx->mlx_img, &(mlx->bits_per_pixel),
-			&(mlx->line_length), &(mlx->endian));
-	printf ("\n%d = l\n", mlx->line_length);
-	printf ("\n%d = e\n", mlx->endian);
+	mlx->addr = mlx_get_data_addr(mlx->mlx_img, &mlx->bits_per_pixel,
+			&mlx->line_length, &mlx->endian);
+	printf("\n%d\n", mlx->line_length);
 }
 
 int	rendering(t_zone *zone)

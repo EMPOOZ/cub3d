@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 13:46:29 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/29 14:07:36 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	dda_init2(t_draw *draw, t_zone *zone)
 {
-	draw->line_height = (int)(zone->height / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + zone->height / 2 + 100;
+	draw->line_height = (int)(1000 / draw->perp_wall_dist);
+	draw->draw_start = -draw->line_height / 2 + 1000 / 2 + 100;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + zone->height / 2 + 100;
-	if (draw->draw_end >= zone->height)
-		draw->draw_end = zone->height - 1;
+	draw->draw_end = draw->line_height / 2 + 1000 / 2 + 100;
+	if (draw->draw_end >= 1000)
+		draw->draw_end = 1000 - 1;
 }
 
 void	while_hit(t_draw *draw, t_zone *zone)
