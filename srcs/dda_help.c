@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 14:08:42 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/29 14:15:14 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x)
 		text_draw.tex_pos += text_draw.step;
 		color = zone->texture[text_draw.tex_num].addr[zone->texture[0].height
 			* text_draw.tex_x * text_draw.tex_y];
-		ft_putnbr_fd(y, 1);
-		printf("\nasd7\n");
 		if (draw->side == 1)
 			color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(zone->mlx, x, y, color);
