@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:48:25 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 14:03:14 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/30 13:09:06 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && x < 1000 && y >= 0 && y < 1000)
-	{
-		dst = mlx->addr + (y * mlx->line_length + x
-				* (mlx->bits_per_pixel / 8));
+	if (x > 1000 || y > 1000 || x <= 0 || y <= 0)
+		return ;
+	if (x + (y * mlx->line_length / 4) >= (mlx->line_length / 4) * 1000)
+		return ;
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	if (color != 0x980088)
 		*(unsigned int *)dst = color;
-	}
 }
 
 void	verline(int x, t_draw *draw, t_zone *zone)
@@ -34,4 +35,15 @@ void	verline(int x, t_draw *draw, t_zone *zone)
 		my_mlx_pixel_put(zone->mlx, x, y, draw->color);
 		y++;
 	}
+}
+
+int	color_get(t_img img, int x, int y)
+{
+	int	color;
+
+	if (x + (y * img.line_length) >= img.line_length * img.height)
+		return (0);
+	color = *((unsigned int *)(img.addr + y * img.line_length
+				+ x * (img.bits_per_pixel / 8)));
+	return (color);
 }
