@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 14:09:44 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/30 13:22:21 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,42 +27,42 @@
 
 typedef struct s_texture_draw
 {
-	float	wall_x;
+	double	wall_x;
 	int		tex_num;
 	int		tex_x;
 	int		tex_y;
-	float	step;
-	float	tex_pos;
+	double	step;
+	double	tex_pos;
 }				t_texture_draw;
 
 typedef struct s_draw
 {
-	float	pos_x;
-	float	pos_y;
-	float	dir_x;
-	float	dir_y;
-	float	plane_x;
-	float	plane_y;
-	float	time;
-	float	old_time;
-	float	camera_x;
-	float	ray_dir_x;
-	float	ray_dir_y;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	time;
+	double	old_time;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
 	int		map_x;
 	int		map_y;
-	float	side_dist_x;
-	float	side_dist_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 	int		step_x;
 	int		step_y;
 	int		hit;
 	int		side;
-	float	perp_wall_dist;
+	double	perp_wall_dist;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-	float	color;
+	double	color;
 }			t_draw;
 
 typedef struct s_img
@@ -105,6 +105,7 @@ typedef struct s_zone
 	int		width;
 	int		floor;
 	int		ceiling;
+	t_draw	*draw;
 	t_img	texture[4];
 	t_mlx	*mlx;
 }			t_zone;
@@ -138,5 +139,7 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x);
 void	verline(int x, t_draw *draw, t_zone *zone);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	draw_background(t_zone *zone);
+int		deal_key(int key, t_zone *zone);
+int		color_get(t_img img, int x, int y);
 
 #endif
