@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:43:32 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 14:07:23 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/30 13:20:34 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ void	create_window(t_mlx *mlx)
 
 int	rendering(t_zone *zone)
 {
-	t_draw	draw;
+	t_draw	*draw;
 
-	draw_init(&draw, zone);
-	dda(&draw, zone);
+	draw = (t_draw *)malloc(sizeof(t_draw));
+	zone->draw = draw;
+	draw_init(draw, zone);
+	dda(draw, zone);
+	mlx_key_hook(zone->mlx->mlx_win, deal_key, zone);
 	return (0);
 }
