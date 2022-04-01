@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:45 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 19:34:11 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:41:49 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 void	press_s(t_zone *zone, t_draw *draw)
 {
-	if (zone->matr_int[(int)(draw->pos_x - draw->dir_x * 1)][(int)draw->pos_x]
-		== 1)
-		draw->pos_x -= draw->dir_x * 1;
-	if (zone->matr_int[(int)draw->pos_x][(int)(draw->pos_y - draw->dir_y * 1)]
-		== 1)
-		draw->pos_x -= draw->dir_x * 1;
-	draw->pos_x -= draw->dir_x * 1;
+	if (zone->matr_int[(int)(draw->pos_x - draw->dir_x * 0.25)][(int)draw->pos_x]
+		== 0)
+		draw->pos_x -= draw->dir_x * 0.25;
+	if (zone->matr_int[(int)draw->pos_x][(int)(draw->pos_y - draw->dir_y * 0.25)]
+		== 0)
+		draw->pos_y -= draw->dir_y * 0.25;
 }
 
 void	press_w(t_zone *zone, t_draw *draw)
 {
-	if (zone->matr_int[(int)(draw->pos_x + draw->dir_x * 1)][(int)draw->pos_x]
-		== 1)
-		draw->pos_x -= draw->dir_x * 1;
-	if (zone->matr_int[(int)draw->pos_x][(int)(draw->pos_y + draw->dir_y * 1)]
-		== 1)
-		draw->pos_x -= draw->dir_x * 1;
-	draw->pos_x += draw->dir_x * 1;
+	if (zone->matr_int[(int)(draw->pos_x + draw->dir_x * 0.25)][(int)draw->pos_x]
+		== 0)
+		draw->pos_x += draw->dir_x * 0.25;
+	if (zone->matr_int[(int)draw->pos_x][(int)(draw->pos_y + draw->dir_y * 0.25)]
+		== 0)
+		draw->pos_y += draw->dir_y * 0.25;
 }
 
 void	press_a(t_draw *draw)
@@ -41,10 +39,10 @@ void	press_a(t_draw *draw)
 
 	old_dir_x = draw->dir_x;
 	old_plane_x = draw->plane_x;
-	draw->dir_x = draw->dir_x * cos(1) - draw->dir_y * sin(1);
-	draw->dir_y = old_dir_x * sin(1) + draw->dir_y * cos(1);
-	draw->plane_x = draw->plane_x * cos(-1) - draw->plane_y * sin(1);
-	draw->plane_y = old_plane_x * sin(1) + draw->plane_y * cos(1);
+	draw->dir_x = draw->dir_x * cos(0.5) - draw->dir_y * sin(0.5);
+	draw->dir_y = old_dir_x * sin(0.5) + draw->dir_y * cos(0.5);
+	draw->plane_x = draw->plane_x * cos(0.5) - draw->plane_y * sin(0.5);
+	draw->plane_y = old_plane_x * sin(0.5) + draw->plane_y * cos(0.5);
 	printf("\nqwe\n");
 }
 
@@ -55,10 +53,10 @@ void	press_d(t_draw *draw)
 
 	old_dir_x = draw->dir_x;
 	old_plane_x = draw->plane_x;
-	draw->dir_x = draw->dir_x * cos(-1) - draw->dir_y * sin(-1);
-	draw->dir_y = old_dir_x * sin(-1) + draw->dir_y * cos(-1);
-	draw->plane_x = draw->plane_x * cos(-1) - draw->plane_y * sin(-1);
-	draw->plane_y = old_plane_x * sin(-1) + draw->plane_y * cos(-1);
+	draw->dir_x = draw->dir_x * cos(-0.5) - draw->dir_y * sin(-0.5);
+	draw->dir_y = old_dir_x * sin(-0.5) + draw->dir_y * cos(-0.5);
+	draw->plane_x = draw->plane_x * cos(-0.5) - draw->plane_y * sin(-0.5);
+	draw->plane_y = old_plane_x * sin(-0.5) + draw->plane_y * cos(-0.5);
 	printf("\nqwe\n");
 }
 
@@ -75,6 +73,5 @@ int	deal_key(int key, t_zone *zone)
 		press_a(zone->draw);
 	if (key == 53)
 		exit(0);
-	dda(zone->draw, zone);
 	return (0);
 }

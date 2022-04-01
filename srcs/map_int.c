@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/30 13:20:24 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/01 13:48:00 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,11 @@ int	parse_identifier(t_zone *zone)
 
 	valid = -1;
 	valid = pars_texture(zone->no, 0, zone);
-	printf("\nasd1\n");
 	valid = pars_texture(zone->so, 1, zone);
-	printf("\nasd2\n");
 	valid = pars_texture(zone->we, 2, zone);
-	printf("\nasd3\n");
 	valid = pars_texture(zone->ea, 3, zone);
-	printf("\nasd4\n");
 	valid = parse_f_c(zone, zone->f, 'F');
-	printf("\nasd5\n");
 	valid = parse_f_c(zone, zone->c, 'C');
-	printf("\nasd6\n");
 	if (valid == -1)
 		return (0);
 	return (valid);
