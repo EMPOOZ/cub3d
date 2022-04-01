@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/26 17:39:49 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/01 12:47:46 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 int	parser4(char *str, t_zone *zone, int a)
 {
-	if (zone->matrice_help == NULL)
-		zone->matrice_help = ft_strdup(str);
+	if (a >= 6)
+	{
+		if (zone->matrice_help == NULL)
+			zone->matrice_help = ft_strdup(str);
+		else
+			zone->matrice_help = ft_strjoin1(zone->matrice_help, str);
+	}
 	else
-		zone->matrice_help = ft_strjoin1(zone->matrice_help, str);
+		return (0);
 	return (1);
 }
 
@@ -43,8 +48,8 @@ int	parser3(char *str, t_zone *zone, int a)
 		return (1);
 	}
 	else
-		if (parser4(str, zone, a) != 1)
-			return (0);
+		if (parser4(str, zone, a) == 1)
+			return (1);
 	return (0);
 }
 
@@ -69,8 +74,8 @@ int	parser2(char *str, t_zone *zone, int a)
 		return (1);
 	}
 	else
-		if (parser3(str, zone, a) != 1)
-			return (0);
+		if (parser3(str, zone, a) == 1)
+			return (1);
 	return (0);
 }
 
@@ -95,8 +100,8 @@ int	parser(char *str, t_zone *zone, int a)
 		return (1);
 	}
 	else
-		if (parser2(str, zone, a) != 1)
-			return (0);
+		if (parser2(str, zone, a) == 1)
+			return (1);
 	return (0);
 }
 
@@ -117,9 +122,9 @@ void	gnl_help(t_zone *zone, int file)
 			break ;
 		if (ft_strncmp(str, "\n", 1) != 0)
 		{
-			parser(str, zone, a);
-			if (str[0] == '1')
-				a++;
+			if (parser(str, zone, a) == 0)
+				exit(1);
+			a++;
 		}
 	}
 	free (str);

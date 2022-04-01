@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/30 13:22:57 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/03/31 14:36:37 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x)
 			& (zone->texture[text_draw.tex_num].height - 1);
 		text_draw.tex_pos += text_draw.step;
 		// color = zone->texture[text_draw.tex_num].addr[zone->texture[0].height
-		// 	* text_draw.tex_x * text_draw.tex_y];
+			// * text_draw.tex_x * text_draw.tex_y];
 		color = color_get(zone->texture[text_draw.tex_num], text_draw.tex_x, text_draw.tex_y);
 		if (draw->side == 1)
 			color = (color >> 1) & 8355711;

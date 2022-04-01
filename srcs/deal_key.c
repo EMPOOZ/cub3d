@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:45 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/29 19:34:11 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:19:14 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,10 @@ void	press_d(t_draw *draw)
 	draw->dir_y = old_dir_x * sin(-1) + draw->dir_y * cos(-1);
 	draw->plane_x = draw->plane_x * cos(-1) - draw->plane_y * sin(-1);
 	draw->plane_y = old_plane_x * sin(-1) + draw->plane_y * cos(-1);
-	printf("\nqwe\n");
 }
 
 int	deal_key(int key, t_zone *zone)
 {
-	printf("%d\n", key);
 	if (key == 1)
 		press_s(zone, zone->draw);
 	if (key == 13)
