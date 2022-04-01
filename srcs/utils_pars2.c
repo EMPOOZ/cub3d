@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:21:25 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/01 13:24:50 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/01 13:51:44 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ int	array_s(void **str)
 			return (-1);
 	}
 	return (i);
-}
-
-int	init_color(t_rgb rgb)
-{
-	int	color_int;
-
-	color_int = rgb.r << 16 | rgb.g << 8 | rgb.b;
-	return (color_int);
 }
 
 void	search_zone(t_zone *zone)

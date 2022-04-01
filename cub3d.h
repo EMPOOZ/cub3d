@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/30 13:22:21 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/01 13:51:51 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,28 @@
 # include	<mlx.h>
 # include	"gnl/get_next_line.h"
 # include	"libft/libft.h"
+
+typedef struct s_floor_and_celing
+{
+	float	ray_dir_x0;
+	float	ray_dir_y0;
+	float	ray_dir_x1;
+	float	ray_dir_y1;
+	int		p;
+	float	pos_z;
+	float	row_distance;
+	float	floor_step_x;
+	float	floor_step_y;
+	float	floor_x;
+	float	floor_y;
+	int		cell_x;
+	int		cell_y;
+	int		tx;
+	int		ty;
+	int		floor_tex;
+	int		ceiling_tex;
+	int		color;
+}				t_floor_and_celing;
 
 typedef struct s_texture_draw
 {
@@ -141,5 +163,10 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	draw_background(t_zone *zone);
 int		deal_key(int key, t_zone *zone);
 int		color_get(t_img img, int x, int y);
+int		color_shift_int(int base, int shift, double force);
+t_rgb	color_shift_rgb(t_rgb base, t_rgb shift, double force);
+t_rgb	color_int_to_rgb(int color);
+void	draw_other(t_draw *draw, t_zone *zone);
+void	press_ws(int key, t_zone *zone);
 
 #endif
