@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/29 17:19:09 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:23:38 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 {
 	int		file;
 	t_zone	*zone;
+	t_draw	*draw;
 
 	zone = (t_zone *)malloc(sizeof(t_zone));
 	zone->mlx = (t_mlx *)malloc(sizeof(t_mlx));
@@ -41,7 +42,11 @@ int	main(int argc, char **argv)
 	if (parce_map(zone) == 0)
 		return (1);
 	map_int(zone);
-	rendering(zone);
+	draw = (t_draw *)malloc(sizeof(t_draw));
+	zone->draw = draw;
+	draw_init(draw, zone);
+	mlx_hook(zone->mlx->mlx_win, 2, 1L << 0, deal_key, zone);
+	mlx_loop_hook(zone->mlx->mlx_ptr, rendering, zone);
 	mlx_loop(zone->mlx->mlx_ptr);
 	free_zone(zone, file);
 	return (0);
