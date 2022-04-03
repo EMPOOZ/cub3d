@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/01 13:11:20 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:06:50 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,27 @@
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
 # include <mlx.h>
+
+typedef struct s_draw		t_draw;
+
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+	double	z;
+}			t_pos;
+
+typedef struct s_player
+{
+	t_pos	pos;
+	double	rot;
+	double	vel_r;
+	double	vel_l;
+	double	vel_u;
+	double	vel_d;
+	double	turn_l;
+	double	turn_r;
+}			t_player;
 
 typedef struct s_floor_and_celing
 {
@@ -52,7 +73,67 @@ typedef struct s_texture_draw
 	double	tex_pos;
 }				t_texture_draw;
 
-typedef struct s_draw
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*mlx_img;
+	void	*mlx_win;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_mlx;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}				t_rgb;
+
+typedef struct s_coll
+{
+	t_pos	pos;
+	int		type;
+	int		dir;
+}			t_coll;
+
+typedef struct s_zone
+{
+	int			pos_y;
+	int			pos_x;
+	int			image_y;
+	int			image_x;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*f;
+	char		*c;
+	char		**matrice;
+	char		*matrice_help;
+	int			**matr_int;
+	int			height;
+	int			width;
+	int			floor;
+	int			ceiling;
+	t_draw		*draw;
+	t_img		texture[4];
+	t_mlx		*mlx;
+	t_player	*player;
+}			t_zone;
+
+struct s_draw
 {
 	double	pos_x;
 	double	pos_y;
@@ -80,59 +161,9 @@ typedef struct s_draw
 	int		draw_start;
 	int		draw_end;
 	double	color;
-}			t_draw;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		height;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_img;
-
-typedef struct s_mlx
-{
-	void	*mlx_ptr;
-	void	*mlx_img;
-	void	*mlx_win;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_mlx;
-
-typedef struct s_zone
-{
-	int		pos_y;
-	int		pos_x;
-	int		image_y;
-	int		image_x;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-	char	**matrice;
-	char	*matrice_help;
-	int		**matr_int;
-	int		height;
-	int		width;
-	int		floor;
-	int		ceiling;
-	t_draw	*draw;
-	t_img	texture[4];
-	t_mlx	*mlx;
-}			t_zone;
-
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}				t_rgb;
+	double	rot;
+	t_zone	*zone;
+};
 
 void	*free_array(void **ptr, void *(f)(void *));
 int		init_color(t_rgb rgb);
@@ -163,5 +194,8 @@ t_rgb	color_shift_rgb(t_rgb base, t_rgb shift, double force);
 t_rgb	color_int_to_rgb(int color);
 void	draw_other(t_draw *draw, t_zone *zone);
 void	press_ws(int key, t_zone *zone);
+int		key_press(int key, t_zone *zone);
+int		key_release(int key, t_zone *zone);
+void	player_init(t_player *player);
 
 #endif

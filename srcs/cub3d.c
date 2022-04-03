@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/01 13:47:49 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/03 15:06:31 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int argc, char **argv)
 
 	zone = (t_zone *)malloc(sizeof(t_zone));
 	zone->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	zone->player = (t_player *)malloc(sizeof(t_player));
+	player_init(zone->player);
 	zone->matrice_help = NULL;
 	if (argc != 2)
 		return (0);
@@ -45,7 +47,8 @@ int	main(int argc, char **argv)
 	draw = (t_draw *)malloc(sizeof(t_draw));
 	zone->draw = draw;
 	draw_init(draw, zone);
-	mlx_hook(zone->mlx->mlx_win, 2, 1L << 0, deal_key, zone);
+	mlx_hook(zone->mlx->mlx_win, 2, 1L << 0, key_press, zone);
+	mlx_hook(zone->mlx->mlx_win, 3, 1L << 1, key_release, zone);
 	mlx_loop_hook(zone->mlx->mlx_ptr, rendering, zone);
 	mlx_loop(zone->mlx->mlx_ptr);
 	free_zone(zone, file);
