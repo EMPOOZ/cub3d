@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/01 13:51:51 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:38:05 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,5 +168,6 @@ t_rgb	color_shift_rgb(t_rgb base, t_rgb shift, double force);
 t_rgb	color_int_to_rgb(int color);
 void	draw_other(t_draw *draw, t_zone *zone);
 void	press_ws(int key, t_zone *zone);
+int	pos_map(t_zone *zone, int x, int y, int *player_found);
 
 #endif

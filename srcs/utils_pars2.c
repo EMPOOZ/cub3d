@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:21:25 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/01 13:51:44 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/01 14:48:44 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	search_zone(t_zone *zone)
 			x++;
 			if (zone->width < x)
 				zone->width = x;
+			
 		}
 		y++;
 	}
