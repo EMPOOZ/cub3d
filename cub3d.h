@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/03 15:47:43 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/03 15:48:36 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,6 @@
 # include	<mlx.h>
 # include	"gnl/get_next_line.h"
 # include	"libft/libft.h"
-
-typedef struct s_floor_and_celing
-{
-	float	ray_dir_x0;
-	float	ray_dir_y0;
-	float	ray_dir_x1;
-	float	ray_dir_y1;
-	int		p;
-	float	pos_z;
-	float	row_distance;
-	float	floor_step_x;
-	float	floor_step_y;
-	float	floor_x;
-	float	floor_y;
-	int		cell_x;
-	int		cell_y;
-	int		tx;
-	int		ty;
-	int		floor_tex;
-	int		ceiling_tex;
-	int		color;
-}				t_floor_and_celing;
 
 typedef struct s_draw		t_draw;
 

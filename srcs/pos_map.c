@@ -61,23 +61,29 @@ int	parse_floor(t_zone *zone, int x, int y, int compare)
 // Check if the code (WALL, FLOOR, etc.) at (x, y) location is valid.
 int	pos_map(t_zone *zone, int x, int y, int *player_found)
 {
+	printf ("\n%d = x\n", x);
+	printf ("\n%d = y\n", y);
 	if (zone->matrice_help[x + y * zone->width] == '1')
 	{
+		printf("\npidaras2\n");
 		if (parse_wall(zone, x, y))
 			zone->matrice_help[x + y * zone->width] = ' ';
 	}
 	else if (zone->matrice_help[x + y * zone->width] == '0')
 	{
+		printf("\npidaras1\n");
 		if (!parse_floor(zone, x, y, ' '))
 			return (0);
 	}
 	else if (parse_is_player(zone->matrice_help[x + y * zone->width]))
 	{
-		zone->pos_x = x * 50.0 + (50.0 / 2);
-		zone->pos_y = y * 50.0 + (50.0 / 2);
+		printf("\npidaras\n");
+		zone->player->pos.x = x * 50.0 + (50.0 / 2);
+		zone->player->pos.y = y * 50.0 + (50.0 / 2);
 		if (*player_found > 0 || !parse_floor(zone, x, y, ' '))
 			return (0);
 		*player_found = 1;
 	}
+	printf("\npidaras123\n");
 	return (1);
 }
