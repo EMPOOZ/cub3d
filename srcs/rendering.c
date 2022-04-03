@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:43:32 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/03 15:06:28 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:45:35 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	rotate_player(t_player *player, double rot)
 
 t_pos	move_pos(t_pos pos, double rot, double dist, int dir)
 {
+<<<<<<< HEAD
 	t_pos	new_pos;
 
 	if (dir)
@@ -101,6 +102,9 @@ int	rendering(t_zone *zone)
 	printf("%f = draw->pos_x123\n", zone->player->pos.x);
 	move_player(zone->player);
 	printf("%f = draw->pos_x\n", zone->player->pos.x);
+=======
+//	deal_key(key, zone);
+>>>>>>> tconwy
 	dda(zone->draw, zone);
 	return (0);
 }

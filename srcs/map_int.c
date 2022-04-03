@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/01 13:48:00 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/03 15:45:12 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ void	map_int_help(t_zone *zone)
 			else if (zone->matrice[y][x] == 'W')
 			{
 				zone->pos_y = y;
-				printf("\n%d = y\n", y);
+				// printf("\n%d = y\n", y);
 				zone->pos_x = x;
-				printf("\n%d = x\n", x);
 				zone->matr_int[y][x] = 3;
 			}
 			x++;

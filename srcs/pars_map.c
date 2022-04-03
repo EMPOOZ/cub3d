@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/29 13:09:20 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/02 13:56:23 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	parce_map_closed1(t_zone *zone, int x)
 
 	if (x >= zone->width || x < 0)
 		return (0);
-	y = 0;
+	y = 0; 
 	while (zone->matrice_help[x + y * zone->width] == ' ')
 		y++;
 	if (zone->matrice_help[x + y * zone->width] != '1')
@@ -93,9 +93,13 @@ int	parce_map(t_zone *zone)
 {
 	int		y;
 	int		x;
+	int		qwe;
+	int		a;
 
 	y = 0;
+	a = 0;
 	x = 0;
+	qwe = 0;
 	zone->matrice = ft_split(zone->matrice_help, '\n');
 	search_zone(zone);
 	ft_putstr_fd("123\n", 1);
@@ -104,11 +108,26 @@ int	parce_map(t_zone *zone)
 	y = 0;
 	free (zone->matrice_help);
 	zone->matrice_help = NULL;
-	x = 0;
-	while (x < zone->height)
+	while (a< zone->height)
+	{
 		zone->matrice_help = ft_strjoin1(zone->matrice_help,
-				zone->matrice[x++]);
-	if (parse_maphelp(zone) == 0)
+		zone->matrice[a++]);
+	}
+	while (y < zone->height)
+	{
+		// printf ("\n%d\n", zone->width);
+		if (!pos_map(zone, x++, y, &qwe))
+		{
+			printf("\nkurva13\n");
+			return (0);
+		}
+		if (x == zone->width)
+		{
+			x = 0;
+			y++;
+		}
+	}
+	if (parse_maphelp(zone) == 0 || qwe == 0)
 	{
 		printf("\nkurva\n");
 		return (0);

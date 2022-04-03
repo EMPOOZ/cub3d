@@ -3,22 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:49:21 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/03 15:06:50 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:46:13 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include <unistd.h>
-# include <math.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "gnl/get_next_line.h"
-# include "libft/libft.h"
-# include <mlx.h>
+# include	<stdarg.h>
+# include	<stdio.h>
+# include	<limits.h>
+# include	<stddef.h>
+# include	<stdlib.h>
+# include	<unistd.h>
+# include	<math.h>
+# include	<complex.h>
+# include	<fcntl.h>
+# include	<mlx.h>
+# include	"gnl/get_next_line.h"
+# include	"libft/libft.h"
+
+typedef struct s_floor_and_celing
+{
+	float	ray_dir_x0;
+	float	ray_dir_y0;
+	float	ray_dir_x1;
+	float	ray_dir_y1;
+	int		p;
+	float	pos_z;
+	float	row_distance;
+	float	floor_step_x;
+	float	floor_step_y;
+	float	floor_x;
+	float	floor_y;
+	int		cell_x;
+	int		cell_y;
+	int		tx;
+	int		ty;
+	int		floor_tex;
+	int		ceiling_tex;
+	int		color;
+}				t_floor_and_celing;
 
 typedef struct s_draw		t_draw;
 
@@ -197,5 +224,6 @@ void	press_ws(int key, t_zone *zone);
 int		key_press(int key, t_zone *zone);
 int		key_release(int key, t_zone *zone);
 void	player_init(t_player *player);
+int		pos_map(t_zone *zone, int x, int y, int *player_found);
 
 #endif

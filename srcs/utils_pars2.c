@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pars2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:21:25 by tconwy            #+#    #+#             */
-/*   Updated: 2022/03/30 14:02:33 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:45:50 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	search_zone(t_zone *zone)
 			x++;
 			if (zone->width < x)
 				zone->width = x;
+			
 		}
 		y++;
 	}
