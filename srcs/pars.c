@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/03 15:45:28 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:42:59 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
- 
+
 int	parser4(char *str, t_zone *zone, int a)
 {
 	if (a >= 6)
@@ -25,12 +25,12 @@ int	parser4(char *str, t_zone *zone, int a)
 		return (0);
 	return (1);
 }
- 
+
 int	parser3(char *str, t_zone *zone, int a)
 {
 	int		i[2];
 	char	**str2;
- 
+
 	i[0] = 0;
 	i[1] = 0;
 	if (str[i[0]] == 'F')
@@ -52,12 +52,12 @@ int	parser3(char *str, t_zone *zone, int a)
 			return (1);
 	return (0);
 }
- 
+
 int	parser2(char *str, t_zone *zone, int a)
 {
 	int		i;
 	char	**str2;
- 
+
 	i = 0;
 	if (str[i] == 'W' && str[i + 1] == 'E')
 	{
@@ -78,12 +78,12 @@ int	parser2(char *str, t_zone *zone, int a)
 			return (1);
 	return (0);
 }
- 
+
 int	parser(char *str, t_zone *zone, int a)
 {
 	int		i;
 	char	**str2;
- 
+
 	i = 0;
 	if (str[i] == 'N' && str[i + 1] == 'O')
 	{
@@ -104,12 +104,12 @@ int	parser(char *str, t_zone *zone, int a)
 			return (1);
 	return (0);
 }
- 
+
 void	gnl_help(t_zone *zone, int file)
 {
 	char	*str;
 	int		a;
- 
+
 	a = 0;
 	str = NULL;
 	str = malloc(sizeof(char));
@@ -129,4 +129,3 @@ void	gnl_help(t_zone *zone, int file)
 	}
 	free (str);
 }
- 

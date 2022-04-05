@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/03 15:01:00 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:34:38 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,23 @@ void	fill_with_texture(t_img *text, t_pos pos, t_zone *zone, t_pos index)
 	double	y_step;
 	int		bytes;
 	int		color;
+	int		y;
 
 	height = zone->draw->line_height;
 	y_step = ((float)text->height - (index.y * 2))
 		/ (height + (1000 - height) / 32.0);
 	bytes = (text->bits_per_pixel / 8);
 	color = 0;
-	while (pos.y < height + (1000 - height) / 2)
+	y = zone->draw->draw_start;
+	while (y < zone->draw->draw_end)
 	{
 		color = color_get(*text, (int)index.x, (int)index.y);
-		color = color_shift_int(color, 0x000000, ((600 - height) / 600) / 2);
+		color = color_shift_int(color, 0x000000, ((1000 - height) / 1000) / 2);
 		if (pos.x >= 0 && pos.x < 1000)
 			my_mlx_pixel_put(zone->mlx, pos.x, pos.y, color);
 		index.y += y_step;
 		pos.y++;
+		y++;
 	}
 }
 
@@ -70,16 +73,16 @@ int	draw3d(float height, t_coll coll, int x, t_zone *zone)
 		height = 1000;
 	}
 	y = (1000 - height) / 2;
-	if (coll.dir & 1)
+	if (coll.dir == 1)
 		fill_with_texture(&zone->texture[0], new_pos(x, y, 0),
 			zone, textures_index(coll.pos, offset, height, 1));
-	else if (coll.dir & 2)
+	else if (coll.dir == 2)
 		fill_with_texture(&zone->texture[1], new_pos(x, y, 0),
 			zone, textures_index(coll.pos, offset, height, 1));
-	else if (coll.dir & 4)
+	else if (coll.dir == 4)
 		fill_with_texture(&zone->texture[2], new_pos(x, y, 0),
 			zone, textures_index(coll.pos, offset, height, 0));
-	else if (coll.dir & 8)
+	else if (coll.dir == 8)
 		fill_with_texture(&zone->texture[3], new_pos(x, y, 0),
 			zone, textures_index(coll.pos, offset, height, 0));
 	return (0);
@@ -95,21 +98,19 @@ double	get_draw_distance(t_pos pos, double rot, t_pos pixel, double angle)
 
 	d_x = (int)fabs(pos.x - pixel.x);
 	d_y = (int)fabs(pos.y - pixel.y);
-//	printf("%f = draw->pos_x\n", pos->x);
 	cos_result = fabs(cos(rot * M_PI / 180.0));
 	sin_result = fabs(sin(rot * M_PI / 180.0));
 	dist = d_x * cos_result + d_y * sin_result;
-	dist = dist * cos(rot * M_PI / 180.0);
-	dist = (50 * 1000) / dist;
-//	printf("%f = dist\n", dist);
+	dist = dist * cos(angle * M_PI / 180.0);
+	dist = (32.0 * 1000) / dist;
 	return (dist);
 }
 
 int	is_in_bound(double x, double y, t_zone *zone)
 {
-	if ((int)x >= zone->width * 32 || x < 0.0)
+	if ((int)x >= zone->width * (int)32.0 || x < 0.0)
 		return (0);
-	if ((int)y >= zone->height * 32 || y < 0.0)
+	if ((int)y >= zone->height * (int)32.0 || y < 0.0)
 		return (0);
 	return (1);
 }
@@ -201,13 +202,13 @@ int	parse_s(int side, int xy)
 	return (0);
 }
 
-t_coll	check_dir(t_pos inter_y, t_pos inter_x, int side, t_draw *draw)
+t_coll	check_dir(t_pos inter_y, t_pos inter_x, int side, t_draw *draw, double rot)
 {
 	int	x;
 	int	y;
 
-	x = draw->pos_x;
-	y = draw->pos_y;
+	x = draw->zone->player->pos.x;
+	y = draw->zone->player->pos.y;
 	while (1)
 	{	
 		if ((pow(inter_y.x - x, 2) + pow(inter_y.y - y, 2))
@@ -217,7 +218,7 @@ t_coll	check_dir(t_pos inter_y, t_pos inter_x, int side, t_draw *draw)
 				return (new_collider(inter_y, 0, parse_s(side, 'y')));
 			else
 				inter_y = increment_pos(inter_y, 'y',
-						parse_s(side, 'y'), draw->rot);
+						parse_s(side, 'y'), rot);
 		}
 		else
 		{
@@ -225,13 +226,13 @@ t_coll	check_dir(t_pos inter_y, t_pos inter_x, int side, t_draw *draw)
 				return (new_collider(inter_x, 0, parse_s(side, 'x')));
 			else
 				inter_x = increment_pos(inter_x, 'x',
-						parse_s(side, 'x'), draw->rot);
+						parse_s(side, 'x'), rot);
 		}
 	}
 	return (new_collider(new_pos(0, 0, 0), 0, 0));
 }
 
-t_coll	check_intersections(double x, double y, t_draw *draw)
+t_coll	check_intersections(t_zone *zone, double x, double y, double rot)
 {
 	t_pos	inter_y_n;
 	t_pos	inter_y_s;
@@ -239,31 +240,30 @@ t_coll	check_intersections(double x, double y, t_draw *draw)
 	t_pos	inter_x_w;
 
 	inter_y_n.x = x + ((fmod(y, 32.0))
-			/ tan(draw->rot * M_PI / 180.0));
+			/ tan(rot * M_PI / 180.0));
 	inter_y_n.y = y - (fmod(y, 32.0));
 	inter_y_s.x = x - (32.0 - (fmod(y, 32.0)))
-		/ tan(draw->rot * M_PI / 180.0);
+		/ tan(rot * M_PI / 180.0);
 	inter_y_s.y = y + (32.0 - (fmod(y, 32.0)));
 	inter_x_e.x = x - (fmod(x, 32.0)) + 32.0;
 	inter_x_e.y = y - ((32.0 - (fmod(x, 32.0)))
-			* tan(tan(draw->rot * M_PI / 180.0)));
+			* tan(tan(rot * M_PI / 180.0)));
 	inter_x_w.x = x - (fmod(x, 32.0));
 	inter_x_w.y = y + ((32.0 - (32.0 - (fmod(x, 32.0))))
-			* tan(draw->rot * M_PI / 180.0));
-	if (draw->rot >= 0 && draw->rot <= 90)
-		return (check_dir(inter_y_n, inter_x_e, 5, draw));
-	else if (draw->rot >= 90 && draw->rot <= 180)
-		return (check_dir(inter_y_n, inter_x_w, 4, draw));
-	else if (draw->rot >= 180 && draw->rot <= 270)
-		return (check_dir(inter_y_s, inter_x_w, 6, draw));
-	else if (draw->rot >= 270 && draw->rot <= 360)
-		return (check_dir(inter_y_s, inter_x_e, 7, draw));
+			* tan(rot * M_PI / 180.0));
+	if (rot >= 0 && rot <= 90)
+		return (check_dir(inter_y_n, inter_x_e, 5, zone->draw, rot));
+	else if (rot >= 90 && rot <= 180)
+		return (check_dir(inter_y_n, inter_x_w, 4, zone->draw, rot));
+	else if (rot >= 180 && rot <= 270)
+		return (check_dir(inter_y_s, inter_x_w, 6, zone->draw, rot));
+	else if (rot >= 270 && rot <= 360)
+		return (check_dir(inter_y_s, inter_x_e, 7, zone->draw, rot));
 	return (new_collider(new_pos(0, 0, 0), 0, 0));
 }
 
 void	dda_init2(t_draw *draw, t_zone *zone)
 {
-	draw->line_height = (int)(1000 / draw->perp_wall_dist);
 	draw->draw_start = -draw->line_height / 2 + 1000 / 2;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
@@ -337,7 +337,7 @@ void	dda_init(t_draw *draw, t_zone *zone, int x)
 	draw->hit = 0;
 }
 
-void	dda(t_draw *draw, t_zone *zone)
+void	dda(t_draw *draw, t_zone *zone, double rot, t_pos pos)
 {
 	int			x;
 	double		height;
@@ -348,31 +348,25 @@ void	dda(t_draw *draw, t_zone *zone)
 	coll = new_collider(new_pos(0, 0, 0), 0, 0);
 	draw_background(zone);
 	draw_other(draw, zone);
-	base_rot = draw->rot;
-	draw->rot -= 30;
+	base_rot = rot;
+	rot -= 30;
 	while (++x < 1000)
 	{
-	//	printf("qwe\n");
 		dda_init(draw, zone, x);
-		if (draw->rot >= 360)
-			draw->rot = fmod(draw->rot, 360);
-		if (draw->rot < 0)
-			draw->rot = 360.0 + draw->rot;
-		coll = check_intersections(zone->player->pos.x, zone->player->pos.y, draw);
-		if (is_in_bound(coll.pos.x, coll.pos.y, zone))
-		{
-			height = get_draw_distance(draw->zone->player->pos, draw->rot, coll.pos, base_rot - draw->rot);
-			draw->line_height = height;
-			draw3d(height, coll, 1000 - x, zone);
-		}
-	//	step(draw, zone);
-	//	while_hit(draw, zone);
-	//	if (draw->side == 0)
-	//		draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
-	//	else
-	//		draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
-	//	dda_init2(draw, zone);
-	//	draw_texture(draw, zone, x);
+		step(draw, zone);
+		while_hit(draw, zone);
+		if (draw->side == 0)
+			draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
+		else
+			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
+		if (rot >= 360)
+			rot = fmod(rot, 360);
+		if (rot < 0)
+			rot = 360.0 + rot;
+		dda_init2(draw, zone);
+		coll = check_intersections(zone, pos.x, pos.y, rot);
+		draw_texture(draw, zone, x);
+		rot += (60.0 / 1000);
 	}
 	mlx_put_image_to_window(zone->mlx->mlx_ptr,
 		zone->mlx->mlx_win, zone->mlx->mlx_img, 0, 0);
