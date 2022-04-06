@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/05 18:29:14 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:29:54 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	map_int_help(t_zone *zone)
 			{
 				zone->pos_y = y;
 				zone->pos_x = x;
-				zone->matr_int[y][x] = 3;
+				zone->matr_int[y][x] = 0;
 			}
 			x++;
 		}
