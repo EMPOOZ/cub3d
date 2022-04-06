@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:43:32 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/03 15:46:49 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/05 18:35:45 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	player_init(t_player *player)
 	player->pos.x = 0;
 	player->pos.y = 0;
 	player->rot = 0;
+	player->turn_l = 0;
+	player->turn_r = 0;
+	player->vel_d = 0;
+	player->vel_l = 0;
+	player->vel_r = 0;
+	player->vel_u = 0;
 }
 
 int	rotate_player(t_player *player, double rot)
@@ -56,11 +62,13 @@ int	rotate_player(t_player *player, double rot)
 t_pos	move_pos(t_pos pos, double rot, double dist, int dir)
 {
 	t_pos	new_pos;
+	int		rot1;
 
+	rot1 = rot;
 	if (dir)
-		rot += 90;
-	new_pos.x = pos.x + dist * cos(rot * M_PI / 180.0);
-	new_pos.y = pos.y + dist * -sin(rot * M_PI / 180.0);
+		rot1 += 90;
+	new_pos.x = pos.x + dist * cos(rot1 * M_PI / 180.0);
+	new_pos.y = pos.y + dist * -sin(rot1 * M_PI / 180.0);
 	new_pos.z = pos.z + 0;
 	return (new_pos);
 }
@@ -93,14 +101,14 @@ void	move_player(t_player *p)
 			change_player_pos(p, p->vel_r + p->vel_l, 1);
 	}
 	if (p->turn_l + p->turn_r)
+	{
 		rotate_player(p, p->turn_l + p->turn_r);
+	}
 }
 
 int	rendering(t_zone *zone)
 {
-	printf("%f = draw->pos_x123\n", zone->player->pos.x);
-	move_player(zone->player);
-	printf("%f = draw->pos_x\n", zone->player->pos.x);
+//	move_player(zone->player);
 	dda(zone->draw, zone);
 	return (0);
 }

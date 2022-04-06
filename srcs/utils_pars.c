@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pars.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:14:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/03 15:45:43 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/04 14:33:57 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,10 @@ int	pars_texture(char *path, int side, t_zone *zone)
 			str, &img->line_length, &img->height);
 	if (!img->img)
 		return (0);
-	printf("%d = img.height\n", img->height);
-	printf("%d = img.line_lenght\n\n\n\n\n", img->line_length);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	if (!img->addr)
 		return (0);
-	printf("%d = img.height1\n", img->height);
-	printf("%d = img.line_lenght1\n", img->line_length);
 	return (1);
 }
 
