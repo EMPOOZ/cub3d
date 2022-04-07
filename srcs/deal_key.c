@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:45 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/05 19:40:39 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:09:00 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	key_press(int key, t_zone *zone)
 	double	old_plane_x;
 
 	modifier = ((double)1000 * (double)1000) / 1000000.0;
+	printf("\n%d\n", key);
 	if (key == 123)
 	{	
 		old_dir_x = zone->draw->dir_x;
@@ -59,19 +60,17 @@ int	key_press(int key, t_zone *zone)
 	}
 	if (key == 13)
 	{
-		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->dir_x * 0.25)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * 0.25;
-		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y + zone->draw->dir_y * 0.25)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * 0.25;
+		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->dir_x * 0.082)][(int)(zone->draw->pos_y)] == 0)
+			zone->draw->pos_x += zone->draw->dir_x * 0.082;
+		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y + zone->draw->dir_y * 0.082)] == 0)
+			zone->draw->pos_y += zone->draw->dir_y * 0.082;
 	}
 	if (key == 1)
-		zone->player->vel_d = -8 * modifier;
-	if (key == 0)
 	{
-		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->dir_x * 0.25)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * (-0.25);
-		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y + zone->draw->dir_y * 0.25)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * (-0.25);
+		if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->dir_x * 0.082)][(int)(zone->draw->pos_y)] == 0)
+			zone->draw->pos_x += zone->draw->dir_x * (-0.082);
+		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y - zone->draw->dir_y * 0.082)] == 0)
+			zone->draw->pos_y += zone->draw->dir_y * (-0.082);
 	}
 	if (key == 2)
 		zone->player->vel_r = -8 * modifier;

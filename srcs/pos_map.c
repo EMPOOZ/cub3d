@@ -74,8 +74,10 @@ int	pos_map(t_zone *zone, int x, int y, int *player_found)
 	else if (parse_is_player(zone->matrice_help[x + y * zone->width], zone->player))
 	{
 		printf("\n%f = rot123\n", zone->player->rot);
-		zone->player->pos.x = x * 32.0 + (32.0 / 2);
-		zone->player->pos.y = y * 32.0 + (32.0 / 2);
+		// zone->player->pos.x = x * 32.0 + (32.0 / 2);
+		// zone->player->pos.y = y * 32.0 + (32.0 / 2);
+		printf ("\n%f = player->pos.x\n", zone->player->pos.x);
+		printf ("\n%f = player->pos.y\n", zone->player->pos.y);
 		if (*player_found > 0 || !parse_floor(zone, x, y, ' '))
 			return (0);
 		*player_found = 1;

@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/06 13:23:10 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/06 18:33:56 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	dda_init(t_draw *draw, t_zone *zone, int x)
 
 void	dda(t_draw *draw, t_zone *zone)
 {
-	int			x;	
+	int			x;
 
 	x = -1;
 	draw_background(zone);
