@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/06 18:33:41 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/07 15:11:01 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	draw_background(t_zone *zone)
 
 void	texture_init(t_draw *draw, t_zone *zone, t_texture_draw *text_draw)
 {
-//	text_draw->tex_num = zone->matr_int[draw->map_x][draw->map_y] - 1;
 	if (draw->side == 0)
 		text_draw->wall_x = zone->draw->pos_y + draw->perp_wall_dist
 			* draw->ray_dir_y;

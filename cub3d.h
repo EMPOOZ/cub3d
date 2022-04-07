@@ -6,7 +6,11 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/06 18:34:10 by tconwy           ###   ########.fr       */
+=======
+/*   Updated: 2022/04/07 13:21:41 by rmicheli         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +30,6 @@
 # include	"libft/libft.h"
 
 typedef struct s_draw		t_draw;
-
-typedef struct s_pos
-{
-	double	x;
-	double	y;
-	double	z;
-}			t_pos;
-
-typedef struct s_player
-{
-	t_pos	pos;
-	double	rot;
-	double	vel_r;
-	double	vel_l;
-	double	vel_u;
-	double	vel_d;
-	double	turn_l;
-	double	turn_r;
-}			t_player;
 
 typedef struct s_floor_and_celing
 {
@@ -106,13 +91,6 @@ typedef struct s_rgb
 	int	b;
 }				t_rgb;
 
-typedef struct s_coll
-{
-	t_pos	pos;
-	int		type;
-	int		dir;
-}			t_coll;
-
 typedef struct s_zone
 {
 	int			pos_y;
@@ -135,7 +113,6 @@ typedef struct s_zone
 	t_draw		*draw;
 	t_img		texture[4];
 	t_mlx		*mlx;
-	t_player	*player;
 }			t_zone;
 
 struct s_draw
@@ -201,7 +178,6 @@ void	draw_other(t_draw *draw, t_zone *zone);
 void	press_ws(int key, t_zone *zone);
 int		key_press(int key, t_zone *zone);
 int		key_release(int key, t_zone *zone);
-void	player_init(t_player *player);
 int		pos_map(t_zone *zone, int x, int y, int *player_found);
 
 #endif
