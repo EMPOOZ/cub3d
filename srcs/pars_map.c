@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/06 18:29:45 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:10:00 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,13 @@ int	parce_map(t_zone *zone)
 	y = 0;
 	free (zone->matrice_help);
 	zone->matrice_help = NULL;
-	while (a< zone->height)
+	while (a < zone->height)
 	{
 		zone->matrice_help = ft_strjoin1(zone->matrice_help,
-		zone->matrice[a++]);
+				zone->matrice[a++]);
 	}
 	while (y < zone->height)
 	{
-		// printf ("\n%d\n", zone->width);
 		if (!pos_map(zone, x++, y, &qwe))
 		{
 			printf("\nkurva13\n");
