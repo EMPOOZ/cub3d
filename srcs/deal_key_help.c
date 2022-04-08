@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   deal_key_help.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 19:12:46 by rmicheli          #+#    #+#             */
+/*   Updated: 2022/04/08 19:17:35 by rmicheli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3d.h"
+
+void	rotate_left(int key, t_zone *zone)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = zone->draw->dir_x;
+	zone->draw->dir_x = zone->draw->dir_x * cos(0.25)
+		- zone->draw->dir_y * sin(0.25);
+	zone->draw->dir_y = old_dir_x * sin(0.25)
+		+ zone->draw->dir_y * cos(0.25);
+	old_plane_x = zone->draw->plane_x;
+	zone->draw->plane_x = zone->draw->plane_x * cos(0.25)
+		- zone->draw->plane_y * sin(0.25);
+	zone->draw->plane_y = old_plane_x * sin(0.25)
+		+ zone->draw->plane_y * cos(0.25);
+}
+
+void	rotate_right(int key, t_zone *zone)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = zone->draw->dir_x;
+	zone->draw->dir_x = zone->draw->dir_x * cos(-0.25)
+		- zone->draw->dir_y * sin(-0.25);
+	zone->draw->dir_y = old_dir_x * sin(-0.25)
+		+ zone->draw->dir_y * cos(-0.25);
+	old_plane_x = zone->draw->plane_x;
+	zone->draw->plane_x = zone->draw->plane_x * cos(-0.25)
+		- zone->draw->plane_y * sin(-0.25);
+	zone->draw->plane_y = old_plane_x * sin(-0.25)
+		+ zone->draw->plane_y * cos(-0.25);
+}
+
+void	rotate(int key, t_zone *zone)
+{
+	if (key == 123)
+		rotate_left(key, zone);
+	if (key == 124)
+		rotate_right(key, zone);
+}

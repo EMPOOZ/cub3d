@@ -6,94 +6,64 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:45 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/08 16:55:28 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/08 19:41:08 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-/*
-int	mouse_handler(int x, int y)
-{
-	static int	mouse_x = 0;
-	static int	mouse_y = 0;
 
-	if (mouse_x != x)
-		rotate_player(&g_game.player, (mouse_x - x) * MOUSE_TURN);
-	mouse_x = x;
-	mouse_y = y;
-	return (0);
+void	press_up(int key, t_zone *zone)
+{
+	if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->dir_x
+			* 0.5)][(int)(zone->draw->pos_y)] == 0)
+		zone->draw->pos_x += zone->draw->dir_x * 0.3;
+	if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
+			+ zone->draw->dir_y * 0.5)] == 0)
+		zone->draw->pos_y += zone->draw->dir_y * 0.3;
 }
-*/
+
+void	press_down(int key, t_zone *zone)
+{
+	if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->dir_x
+			* 0.5)][(int)(zone->draw->pos_y)] == 0)
+		zone->draw->pos_x += zone->draw->dir_x * (-0.3);
+	if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
+			- zone->draw->dir_y * 0.5)] == 0)
+		zone->draw->pos_y += zone->draw->dir_y * (-0.3);
+}
+
+void	press_left(int key, t_zone *zone)
+{
+	if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->plane_x
+			* 0.5)][(int)(zone->draw->pos_y)] == 0)
+		zone->draw->pos_x += zone->draw->plane_x * (-0.3);
+	if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
+			- zone->draw->plane_y * 0.5)] == 0)
+		zone->draw->pos_y += zone->draw->plane_y * (-0.3);
+}
+
+void	press_right(int key, t_zone *zone)
+{
+	if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->plane_x
+			* 0.5)][(int)(zone->draw->pos_y)] == 0)
+		zone->draw->pos_x += zone->draw->plane_x * 0.3;
+	if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
+			+ zone->draw->plane_y * 0.5)] == 0)
+		zone->draw->pos_y += zone->draw->plane_y * 0.3;
+}
+
 int	key_press(int key, t_zone *zone)
 {
-	double	modifier;
-	double	old_dir_x;
-	double	old_plane_x;
-
-	modifier = ((double)1000 * (double)1000) / 1000000.0;
-	printf("\n%d\n", key);
-	if (key == 123)
-	{	
-		old_dir_x = zone->draw->dir_x;
-		zone->draw->dir_x = zone->draw->dir_x * cos(0.25)
-			- zone->draw->dir_y * sin(0.25);
-		zone->draw->dir_y = old_dir_x * sin(0.25)
-			+ zone->draw->dir_y * cos(0.25);
-		old_plane_x = zone->draw->plane_x;
-		zone->draw->plane_x = zone->draw->plane_x * cos(0.25)
-			- zone->draw->plane_y * sin(0.25);
-		zone->draw->plane_y = old_plane_x * sin(0.25)
-			+ zone->draw->plane_y * cos(0.25);
-	}
-	if (key == 124)
-	{
-		old_dir_x = zone->draw->dir_x;
-		zone->draw->dir_x = zone->draw->dir_x * cos(-0.25)
-			- zone->draw->dir_y * sin(-0.25);
-		zone->draw->dir_y = old_dir_x * sin(-0.25)
-			+ zone->draw->dir_y * cos(-0.25);
-		old_plane_x = zone->draw->plane_x;
-		zone->draw->plane_x = zone->draw->plane_x * cos(-0.25)
-			- zone->draw->plane_y * sin(-0.25);
-		zone->draw->plane_y = old_plane_x * sin(-0.25)
-			+ zone->draw->plane_y * cos(-0.25);
-	}
+	if (key == 123 || key == 124)
+		rotate(key, zone);
 	if (key == 13)
-	{
-		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->dir_x
-				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * 0.5;
-		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
-				+ zone->draw->dir_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * 0.5;
-	}
+		press_up(key, zone);
 	if (key == 1)
-	{
-		if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->dir_x
-				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * (-0.5);
-		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
-				- zone->draw->dir_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * (-0.5);
-	}
+		press_down(key, zone);
 	if (key == 0)
-	{
-		if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->plane_x
-				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->plane_x * (-0.5);
-		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
-				- zone->draw->plane_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->plane_y * (-0.5);
-	}
+		press_left(key, zone);
 	if (key == 2)
-	{
-		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->plane_x
-				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->plane_x * 0.5;
-		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
-				+ zone->draw->plane_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->plane_y * 0.5;
-	}
+		press_right(key, zone);
 	if (key == 53)
 		exit(1);
 	return (key);

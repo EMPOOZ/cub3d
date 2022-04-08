@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/07 15:12:07 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/08 19:14:04 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,6 @@ void	press_ws(int key, t_zone *zone);
 int		key_press(int key, t_zone *zone);
 int		key_release(int key, t_zone *zone);
 int		pos_map(t_zone *zone, int x, int y, int *player_found);
+void	rotate(int key, t_zone *zone);
 
 #endif

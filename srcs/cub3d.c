@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/08 16:22:31 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/08 19:43:33 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,24 @@ int	check_cub(char *str)
 	while (str[i] != '.')
 		i++;
 	if (ft_strncmp(str + i, ".cub", 4) != 0)
-		return(0);
+		return (0);
 	return (1);
+}
+
+int	exit_f(void)
+{
+	exit(1);
+	return(0);
+}
+
+void	game_play(t_zone *zone, t_draw *draw, int file)
+{
+	draw_init(draw, zone);
+	mlx_hook(zone->mlx->mlx_win, 2, 1L << 0, key_press, zone);
+	mlx_hook(zone->mlx->mlx_win, 17, 0, exit_f, NULL);
+	mlx_loop_hook(zone->mlx->mlx_ptr, rendering, zone);
+	mlx_loop(zone->mlx->mlx_ptr);
+	free_zone(zone, file);
 }
 
 int	main(int argc, char **argv)
@@ -51,7 +67,7 @@ int	main(int argc, char **argv)
 	if (check_cub(argv[1]) == 0)
 	{
 		printf("no cub\n");
-		return(0);
+		return (0);
 	}
 	file = open(argv[1], O_RDWR);
 	create_window(zone->mlx);
@@ -61,10 +77,6 @@ int	main(int argc, char **argv)
 	map_int(zone);
 	draw = (t_draw *)malloc(sizeof(t_draw));
 	zone->draw = draw;
-	draw_init(draw, zone);
-	mlx_hook(zone->mlx->mlx_win, 2, 1L << 0, key_press, zone);
-	mlx_loop_hook(zone->mlx->mlx_ptr, rendering, zone);
-	mlx_loop(zone->mlx->mlx_ptr);
-	free_zone(zone, file);
+	game_play(zone, draw, file);
 	return (0);
 }

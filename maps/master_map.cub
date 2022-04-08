@@ -1,7 +1,7 @@
 WE ./textures/wall_1.xpm
 SO ./textures/wall_2.xpm
 EA ./textures/wood.xpm
-NO ./textures/greystone
+NO ./textures/greystone.xpm
 
 F 133,117,92
 C 82,39,16
