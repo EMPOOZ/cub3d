@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/03 15:49:02 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/07 15:41:45 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	while_hit(t_draw *draw, t_zone *zone)
 			draw->map_y += draw->step_y;
 			draw->side = 1;
 		}
-		if (zone->matr_int[draw->map_x][draw->map_y] > 0)
+		if (zone->matr_int[draw->map_y][draw->map_x] > 0)
 			draw->hit = 1;
 	}
 }

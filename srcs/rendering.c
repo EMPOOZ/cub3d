@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:43:32 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/07 15:07:01 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:22:55 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	draw_init(t_draw *draw, t_zone *zone)
 {
-	draw->pos_x = (double)zone->pos_y;
-	draw->pos_y = (double)zone->pos_x;
+	draw->pos_x = (double)zone->pos_y + 0.5;
+	draw->pos_y = (double)zone->pos_x + 0.5;
 	draw->dir_x = -1.0;
 	draw->dir_y = 0.0;
 	draw->plane_x = 0.0;
