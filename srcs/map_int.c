@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/06 18:29:54 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/08 16:27:49 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ int	parse_f_c(t_zone *zone, char *colors, char id)
 
 int	parse_identifier(t_zone *zone)
 {
-	int	valid;
-
-	valid = -1;
-	valid = pars_texture(zone->no, 0, zone);
-	valid = pars_texture(zone->so, 1, zone);
-	valid = pars_texture(zone->we, 2, zone);
-	valid = pars_texture(zone->ea, 3, zone);
-	valid = parse_f_c(zone, zone->f, 'F');
-	valid = parse_f_c(zone, zone->c, 'C');
-	if (valid == -1)
+	if (!pars_texture(zone->no, 0, zone))
 		return (0);
-	return (valid);
+	if (!pars_texture(zone->so, 1, zone))
+		return (0);
+	if (!pars_texture(zone->we, 2, zone))
+		return (0);
+	if (!pars_texture(zone->ea, 3, zone))
+		return (0);
+	if (!parse_f_c(zone, zone->f, 'F'))
+		return (0);
+	if (!parse_f_c(zone, zone->f, 'F'))
+		return (0);
+	return (1);
 }
 
 void	map_int_help(t_zone *zone)
@@ -88,5 +89,8 @@ void	map_int(t_zone *zone)
 	zone->matr_int = (int **)malloc(sizeof(int *) * zone->height);
 	map_int_help(zone);
 	if (parse_identifier(zone) == 0)
+	{
+		printf("Error: failed pars text\n");
 		exit (1);
+	}
 }

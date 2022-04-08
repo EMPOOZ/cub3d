@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_help.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/07 15:11:01 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:55:14 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x)
 	{
 		text_draw.tex_y = (int)text_draw.tex_pos & (32 - 1);
 		text_draw.tex_pos += text_draw.step;
-		color = color_get(zone->texture[text_draw.tex_num], text_draw.tex_x, 
+		color = color_get(zone->texture[text_draw.tex_num], text_draw.tex_x,
 				text_draw.tex_y);
 		color = color_shift_int(color, 0x000000, ((1000 - draw->perp_wall_dist) / 1000) / 2);
 		if (x >= 0 && x < 1000)

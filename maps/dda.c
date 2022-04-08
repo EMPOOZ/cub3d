@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/08 16:55:21 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:41:45 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	while_hit(t_draw *draw, t_zone *zone)
 			draw->map_y += draw->step_y;
 			draw->side = 1;
 		}
-		if (zone->matr_int[draw->map_x][draw->map_y] > 0)
+		if (zone->matr_int[draw->map_y][draw->map_x] > 0)
 			draw->hit = 1;
 	}
 }
@@ -104,8 +104,8 @@ void	dda(t_draw *draw, t_zone *zone)
 			draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
 		else
 			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
-		dda_init2(draw, zone);
 		draw_texture(draw, zone, x);
+		dda_init2(draw, zone);
 	}
 	mlx_put_image_to_window(zone->mlx->mlx_ptr,
 		zone->mlx->mlx_win, zone->mlx->mlx_img, 0, 0);
