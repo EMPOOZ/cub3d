@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:45 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/07 15:11:12 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/08 12:48:27 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,38 @@ int	key_press(int key, t_zone *zone)
 	if (key == 13)
 	{
 		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->dir_x
-				* 0.082)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * 0.082;
+				* 0.5)][(int)(zone->draw->pos_y)] == 0)
+			zone->draw->pos_x += zone->draw->dir_x * 0.5;
 		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
-				+ zone->draw->dir_y * 0.082)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * 0.082;
+				+ zone->draw->dir_y * 0.5)] == 0)
+			zone->draw->pos_y += zone->draw->dir_y * 0.5;
 	}
 	if (key == 1)
 	{
 		if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->dir_x
-				* 0.082)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * (-0.082);
+				* 0.5)][(int)(zone->draw->pos_y)] == 0)
+			zone->draw->pos_x += zone->draw->dir_x * (-0.5);
 		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
-				- zone->draw->dir_y * 0.082)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * (-0.082);
+				- zone->draw->dir_y * 0.5)] == 0)
+			zone->draw->pos_y += zone->draw->dir_y * (-0.5);
+	}
+	if (key == 0)
+	{
+		if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->plane_x
+				* 0.5)][(int)(zone->draw->pos_y)] == 0)
+			zone->draw->pos_x += zone->draw->plane_x * (-0.5);
+		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
+				- zone->draw->plane_y * 0.5)] == 0)
+			zone->draw->pos_y += zone->draw->plane_y * (-0.5);
+	}
+	if (key == 2)
+	{
+		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->plane_x
+				* 0.5)][(int)(zone->draw->pos_y)] == 0)
+			zone->draw->pos_x += zone->draw->plane_x * 0.5;
+		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
+				+ zone->draw->plane_y * 0.5)] == 0)
+			zone->draw->pos_y += zone->draw->plane_y * 0.5;
 	}
 	if (key == 53)
 		exit(1);
