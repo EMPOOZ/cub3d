@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 14:02:54 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/03/30 14:09:43 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:18:58 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,10 @@ t_rgb	color_shift_rgb(t_rgb base, t_rgb shift, double force)
 	force = 0;
 	shift.b = shift.b;
 	return (base);
+}
+
+int	error_input(char *str)
+{
+	printf ("%s\n", str);
+	return (1);
 }

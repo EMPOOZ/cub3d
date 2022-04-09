@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pars.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:14:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/04 14:33:57 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:12:20 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,18 @@ int	pars_texture(char *path, int side, t_zone *zone)
 	img->img = mlx_xpm_file_to_image(zone->mlx->mlx_ptr,
 			str, &img->line_length, &img->height);
 	if (!img->img)
+	{
+		free (str);
 		return (0);
+	}
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	if (!img->addr)
+	{
+		free (str);
 		return (0);
+	}
+	free (str);
 	return (1);
 }
 

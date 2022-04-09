@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/08 19:14:04 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:07:22 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,6 @@
 # include	"libft/libft.h"
 
 typedef struct s_draw		t_draw;
-
-typedef struct s_floor_and_celing
-{
-	float	ray_dir_x0;
-	float	ray_dir_y0;
-	float	ray_dir_x1;
-	float	ray_dir_y1;
-	int		p;
-	float	pos_z;
-	float	row_distance;
-	float	floor_step_x;
-	float	floor_step_y;
-	float	floor_x;
-	float	floor_y;
-	int		cell_x;
-	int		cell_y;
-	int		tx;
-	int		ty;
-	int		floor_tex;
-	int		ceiling_tex;
-	int		color;
-}				t_floor_and_celing;
 
 typedef struct s_texture_draw
 {
@@ -170,11 +148,15 @@ int		color_get(t_img img, int x, int y);
 int		color_shift_int(int base, int shift, double force);
 t_rgb	color_shift_rgb(t_rgb base, t_rgb shift, double force);
 t_rgb	color_int_to_rgb(int color);
-void	draw_other(t_draw *draw, t_zone *zone);
-void	press_ws(int key, t_zone *zone);
+void	draw_other(t_zone *zone);
 int		key_press(int key, t_zone *zone);
 int		key_release(int key, t_zone *zone);
 int		pos_map(t_zone *zone, int x, int y, int *player_found);
 void	rotate(int key, t_zone *zone);
+int		search_wh(t_zone *zone, int qwe);
+int		error_input(char *str);
+int		cub_init(t_zone *zone, t_draw *draw);
+void	exit_free(t_zone *zone, t_draw *draw);
+void	init_img(t_zone *zone);
 
 #endif

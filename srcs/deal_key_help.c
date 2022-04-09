@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key_help.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 19:12:46 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/08 19:17:35 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 12:03:37 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	rotate_left(int key, t_zone *zone)
+void	rotate_left(t_zone *zone)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -29,7 +29,7 @@ void	rotate_left(int key, t_zone *zone)
 		+ zone->draw->plane_y * cos(0.25);
 }
 
-void	rotate_right(int key, t_zone *zone)
+void	rotate_right(t_zone *zone)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -49,7 +49,7 @@ void	rotate_right(int key, t_zone *zone)
 void	rotate(int key, t_zone *zone)
 {
 	if (key == 123)
-		rotate_left(key, zone);
+		rotate_left(zone);
 	if (key == 124)
-		rotate_right(key, zone);
+		rotate_right(zone);
 }

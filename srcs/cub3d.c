@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/08 19:43:33 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:31:31 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_cub(char *str)
 int	exit_f(void)
 {
 	exit(1);
-	return(0);
+	return (0);
 }
 
 void	game_play(t_zone *zone, t_draw *draw, int file)
@@ -60,23 +60,20 @@ int	main(int argc, char **argv)
 	t_draw	*draw;
 
 	zone = (t_zone *)malloc(sizeof(t_zone));
-	zone->mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	zone->matrice_help = NULL;
+	draw = (t_draw *)malloc(sizeof(t_draw));
 	if (argc != 2)
-		return (0);
+		return (error_input("error arguments"));
+	cub_init(zone, draw);
+	file = open(argv[1], O_RDWR);
 	if (check_cub(argv[1]) == 0)
 	{
 		printf("no cub\n");
 		return (0);
 	}
-	file = open(argv[1], O_RDWR);
-	create_window(zone->mlx);
 	gnl_help(zone, file);
 	if (parce_map(zone) == 0)
 		return (1);
 	map_int(zone);
-	draw = (t_draw *)malloc(sizeof(t_draw));
-	zone->draw = draw;
 	game_play(zone, draw, file);
 	return (0);
 }

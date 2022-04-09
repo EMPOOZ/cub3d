@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pars2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:21:25 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/05 13:35:19 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:27:17 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	*free_array(void **ptr, void *(f)(void *))
+void	*free_array(void **ptr,	void *(f)(void *))
 {
 	int	a;
 
@@ -71,4 +71,27 @@ void	free_string1(char **u)
 	while (u[y])
 		free(u[y++]);
 	free(u);
+}
+
+int	search_wh(t_zone *zone, int qwe)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < zone->height)
+	{
+		if (!pos_map(zone, x++, y, &qwe))
+		{
+			printf("error matrice1\n");
+			exit (0);
+		}
+		if (x == zone->width)
+		{
+			x = 0;
+			y++;
+		}
+	}
+	return (qwe);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/08 19:15:35 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:59:19 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	dda_init2(t_draw *draw, t_zone *zone)
+void	dda_init2(t_draw *draw)
 {
 	draw->line_height = (int)(1000 / draw->perp_wall_dist);
 	draw->draw_start = -draw->line_height / 2 + 1000 / 2;
@@ -44,7 +44,7 @@ void	while_hit(t_draw *draw, t_zone *zone)
 	}
 }
 
-void	step(t_draw *draw, t_zone *zone)
+void	step(t_draw *draw)
 {
 	if (draw->ray_dir_x < 0)
 	{
@@ -70,7 +70,7 @@ void	step(t_draw *draw, t_zone *zone)
 	}
 }
 
-void	dda_init(t_draw *draw, t_zone *zone, int x)
+void	dda_init(t_draw *draw, int x)
 {
 	draw->camera_x = 2 * x / (double)1000 - 1;
 	draw->ray_dir_x = draw->dir_x + draw->plane_x * draw->camera_x;
@@ -94,17 +94,17 @@ void	dda(t_draw *draw, t_zone *zone)
 
 	x = -1;
 	draw_background(zone);
-	draw_other(draw, zone);
+	draw_other(zone);
 	while (++x < 1000)
 	{
-		dda_init(draw, zone, x);
-		step(draw, zone);
+		dda_init(draw, x);
+		step(draw);
 		while_hit(draw, zone);
 		if (draw->side == 0)
 			draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
 		else
 			draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
-		dda_init2(draw, zone);
+		dda_init2(draw);
 		draw_texture(draw, zone, x);
 	}
 	mlx_put_image_to_window(zone->mlx->mlx_ptr,
