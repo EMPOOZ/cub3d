@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_int.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:32:17 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/08 16:27:49 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:31:04 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	map_int_help(t_zone *zone)
 	int	y;
 	int	x;
 
+	y = 0;
 	while (zone->matrice[y])
 	{
 		x = 0;

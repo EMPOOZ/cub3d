@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_other.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:16:14 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/07 14:48:16 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:30:22 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	fac_x(t_draw *draw, t_zone *zone, t_floor_and_celing *fac, int y)
+void	fac_x(t_zone *zone, int y)
 {
 	int	x;
 
@@ -25,15 +25,14 @@ void	fac_x(t_draw *draw, t_zone *zone, t_floor_and_celing *fac, int y)
 	}
 }
 
-void	draw_other(t_draw *draw, t_zone *zone)
+void	draw_other(t_zone *zone)
 {
-	t_floor_and_celing	fac;
 	int					y;
 
 	y = 0;
 	while (y < 1000)
 	{
-		fac_x(draw, zone, &fac, y);
+		fac_x(zone, y);
 		y++;
 	}
 }

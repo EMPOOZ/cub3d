@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:45 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/08 16:55:28 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:30:56 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,37 +62,37 @@ int	key_press(int key, t_zone *zone)
 	{
 		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->dir_x
 				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * 0.5;
+			zone->draw->pos_x += zone->draw->dir_x * 0.3;
 		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
 				+ zone->draw->dir_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * 0.5;
+			zone->draw->pos_y += zone->draw->dir_y * 0.3;
 	}
 	if (key == 1)
 	{
 		if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->dir_x
 				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->dir_x * (-0.5);
+			zone->draw->pos_x += zone->draw->dir_x * (-0.3);
 		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
 				- zone->draw->dir_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->dir_y * (-0.5);
+			zone->draw->pos_y += zone->draw->dir_y * (-0.3);
 	}
 	if (key == 0)
 	{
 		if (zone->matr_int[(int)(zone->draw->pos_x - zone->draw->plane_x
 				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->plane_x * (-0.5);
+			zone->draw->pos_x += zone->draw->plane_x * (-0.3);
 		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
 				- zone->draw->plane_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->plane_y * (-0.5);
+			zone->draw->pos_y += zone->draw->plane_y * (-0.3);
 	}
 	if (key == 2)
 	{
 		if (zone->matr_int[(int)(zone->draw->pos_x + zone->draw->plane_x
 				* 0.5)][(int)(zone->draw->pos_y)] == 0)
-			zone->draw->pos_x += zone->draw->plane_x * 0.5;
+			zone->draw->pos_x += zone->draw->plane_x * 0.3;
 		if (zone->matr_int[(int)(zone->draw->pos_x)][(int)(zone->draw->pos_y
 				+ zone->draw->plane_y * 0.5)] == 0)
-			zone->draw->pos_y += zone->draw->plane_y * 0.5;
+			zone->draw->pos_y += zone->draw->plane_y * 0.3;
 	}
 	if (key == 53)
 		exit(1);

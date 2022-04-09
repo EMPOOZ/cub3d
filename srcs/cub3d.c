@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/08 16:22:31 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/08 19:01:04 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_cub(char *str)
 	while (str[i] != '.')
 		i++;
 	if (ft_strncmp(str + i, ".cub", 4) != 0)
-		return(0);
+		return (0);
 	return (1);
 }
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	if (check_cub(argv[1]) == 0)
 	{
 		printf("no cub\n");
-		return(0);
+		return (0);
 	}
 	file = open(argv[1], O_RDWR);
 	create_window(zone->mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_help.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/08 16:55:14 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:28:54 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,36 +43,42 @@ void	texture_init(t_draw *draw, t_zone *zone, t_texture_draw *text_draw)
 			/ 2 + draw->line_height / 2) * text_draw->step;
 }
 
-void	draw_texture(t_draw *draw, t_zone *zone, int x)
+int	search_num(t_draw *draw, t_texture_draw *text_draw)
 {
-	t_texture_draw	text_draw;
-	double			y_step;
-	int				color;
-	int				y;
-
-	texture_init(draw, zone, &text_draw);
 	if (draw->side == 1)
 	{
 		if (draw->ray_dir_y < 0)
-			text_draw.tex_num = 2;
+			text_draw->tex_num = 2;
 		else
-			text_draw.tex_num = 3;
+			text_draw->tex_num = 3;
 	}
 	else if (draw->side == 0)
 	{
 		if (draw->ray_dir_x < 0)
-			text_draw.tex_num = 0;
+			text_draw->tex_num = 0;
 		else
-			text_draw.tex_num = 1;
+			text_draw->tex_num = 1;
 	}
+	return (text_draw->tex_num);
+}
+
+void	draw_texture(t_draw *draw, t_zone *zone, int x)
+{
+	t_texture_draw	text_draw;
+	int				color;
+	int				y;
+
+	texture_init(draw, zone, &text_draw);
 	y = draw->draw_start;
 	while (y < draw->draw_end)
 	{
+		text_draw.tex_num = search_num(draw, &text_draw);
 		text_draw.tex_y = (int)text_draw.tex_pos & (32 - 1);
 		text_draw.tex_pos += text_draw.step;
 		color = color_get(zone->texture[text_draw.tex_num], text_draw.tex_x,
 				text_draw.tex_y);
-		color = color_shift_int(color, 0x000000, ((1000 - draw->perp_wall_dist) / 1000) / 2);
+		color = color_shift_int(color, 0x000000,
+				((1000 - draw->perp_wall_dist) / 1000) / 2);
 		if (x >= 0 && x < 1000)
 			my_mlx_pixel_put(zone->mlx, x, y + draw->perp_wall_dist, color);
 		y++;

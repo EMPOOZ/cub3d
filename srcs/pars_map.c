@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/07 15:12:33 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/09 11:31:28 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,10 @@ void	re_parse_martrice(t_zone *zone)
 int	parce_map(t_zone *zone)
 {
 	int		y;
-	int		x;
 	int		qwe;
 	int		a;
 
-	y = 0;
 	a = 0;
-	x = 0;
 	qwe = 0;
 	zone->matrice = ft_split(zone->matrice_help, '\n');
 	search_zone(zone);
@@ -111,22 +108,10 @@ int	parce_map(t_zone *zone)
 		zone->matrice_help = ft_strjoin1(zone->matrice_help,
 				zone->matrice[a++]);
 	}
-	while (y < zone->height)
-	{
-		if (!pos_map(zone, x++, y, &qwe))
-		{
-			printf("\nkurva13\n");
-			return (0);
-		}
-		if (x == zone->width)
-		{
-			x = 0;
-			y++;
-		}
-	}
+	qwe = search_wh(zone, qwe);
 	if (parse_maphelp(zone) == 0 || qwe == 0)
 	{
-		printf("\nkurva\n");
+		printf("error matrice2\n");
 		return (0);
 	}
 	return (1);
