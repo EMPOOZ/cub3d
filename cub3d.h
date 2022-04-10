@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 14:07:22 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/09 17:13:13 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void	rotate(int key, t_zone *zone);
 int		search_wh(t_zone *zone, int qwe);
 int		error_input(char *str);
 int		cub_init(t_zone *zone, t_draw *draw);
-void	exit_free(t_zone *zone, t_draw *draw);
+void	exit_free(t_zone *zone, t_draw *draw, char *error);
 void	init_img(t_zone *zone);
 
 #endif

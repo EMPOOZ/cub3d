@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 13:37:47 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 14:34:54 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/09 17:13:39 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_img(t_img tex[4])
 		free(tex[3].addr);
 }
 
-void	exit_free(t_zone *zone, t_draw *draw)
+void	exit_free(t_zone *zone, t_draw *draw, char *error)
 {
 	if (zone->draw)
 		free(zone->draw);
@@ -42,6 +42,7 @@ void	exit_free(t_zone *zone, t_draw *draw)
 		free(draw->zone);
 	if (draw)
 		free(draw);
+	printf("%s", error);
 	exit(0);
 }
 
@@ -56,11 +57,11 @@ void	init_img(t_zone *zone)
 int	cub_init(t_zone *zone, t_draw *draw)
 {
 	zone->mlx = (t_mlx *)malloc(sizeof(t_mlx));
-//	zone->draw = NULL;
-//	draw->zone = NULL;
+	zone->draw = NULL;
+	draw->zone = NULL;
 	if (!zone || !zone->mlx || !draw)
 		return (0);
-//	init_img(zone);
+	init_img(zone);
 	create_window(zone->mlx);
 	zone->draw = draw;
 	zone->matrice_help = NULL;

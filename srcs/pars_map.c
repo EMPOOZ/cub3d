@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 15:54:39 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:30:31 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,12 @@ int	parse_maphelp(t_zone *zone)
 		}
 		i++;
 	}
-	printf ("\n%d = i\n", i);
 	i = 0;
+	while (i < zone->height)
+	{
+		printf("%s\n", zone->matrice[i]);
+		i++;
+	}
 	while (i < zone->width)
 	{
 		if (!parce_map_closed1(zone, i))
@@ -137,13 +141,16 @@ int	parce_map(t_zone *zone)
 	while (a < zone->height)
 	{
 		zone->matrice_help = ft_strjoin1(zone->matrice_help,
-				zone->matrice[a++]);
+				zone->matrice[a]);
+		a++;
 	}
-	qwe = search_wh(zone, qwe);
-	if (parse_maphelp(zone) == 0 || qwe == 0)
+	if (parse_maphelp(zone) == 0)
 	{
 		printf("error matrice2\n");
 		return (0);
 	}
+	qwe = search_wh(zone, qwe);
+	if (qwe == 0)
+		return (0);
 	return (1);
 }

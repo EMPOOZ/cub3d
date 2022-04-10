@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 14:31:31 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/09 19:17:56 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,11 @@ int	main(int argc, char **argv)
 	draw = (t_draw *)malloc(sizeof(t_draw));
 	if (argc != 2)
 		return (error_input("error arguments"));
-	cub_init(zone, draw);
+	if (!cub_init(zone, draw))
+		exit_free(zone, draw, "error init\n");
 	file = open(argv[1], O_RDWR);
 	if (check_cub(argv[1]) == 0)
-	{
-		printf("no cub\n");
-		return (0);
-	}
+		exit_free(zone, draw, "no cub\n");
 	gnl_help(zone, file);
 	if (parce_map(zone) == 0)
 		return (1);

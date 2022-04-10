@@ -3,19 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   pos_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:19:30 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/07 15:11:31 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/09 16:46:55 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../cub3d.h"
 
-int	parse_is_player(char c)
+void	vector(t_draw *draw, int y, int x)
+{
+	draw->dir_x = x;
+	draw->dir_y = y;
+}
+
+int	parse_is_player(t_zone *zone, char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	{
+		if (c == 'N')
+			vector(zone->draw, 0, -1);
+		if (c == 'S')
+			vector(zone->draw, 0, 1);
+		if (c == 'W')
+			vector(zone->draw, -1, 0);
+		if (c == 'E')
+			vector(zone->draw, 1, 0);
 		return (1);
+	}
 	return (0);
 }
 
@@ -73,7 +89,7 @@ int	pos_map(t_zone *zone, int x, int y, int *player_found)
 		if (!parse_floor(zone, x, y, ' '))
 			return (0);
 	}
-	else if (parse_is_player(zone->matrice_help[x + y * zone->width]))
+	else if (parse_is_player(zone, zone->matrice_help[x + y * zone->width]))
 	{
 		if (*player_found > 0 || !parse_floor(zone, x, y, ' '))
 			return (0);
