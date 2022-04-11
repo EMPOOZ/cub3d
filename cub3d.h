@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 17:13:13 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/10 19:21:33 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_rgb
 
 typedef struct s_zone
 {
+	char		c1;
 	int			pos_y;
 	int			pos_x;
 	int			image_y;

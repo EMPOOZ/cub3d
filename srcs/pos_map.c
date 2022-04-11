@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:19:30 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/09 16:46:55 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/10 19:01:54 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,27 @@
 void	vector(t_draw *draw, int y, int x)
 {
 	draw->dir_x = x;
+	if (x == -1.0)
+	{
+		draw->plane_y = 0.66;
+		draw->plane_x = 0;
+	}
+	else if (x == 1.0)
+	{
+		draw->plane_y = -0.66;
+		draw->plane_x = 0;
+	}
 	draw->dir_y = y;
+	if (y == -1.0)
+	{
+		draw->plane_y = 0;
+		draw->plane_x = 0.66;
+	}
+	else if (y == 1.0)
+	{
+		draw->plane_y = 0;
+		draw->plane_x = -0.66;
+	}
 }
 
 int	parse_is_player(t_zone *zone, char c)
@@ -30,6 +50,7 @@ int	parse_is_player(t_zone *zone, char c)
 			vector(zone->draw, -1, 0);
 		if (c == 'E')
 			vector(zone->draw, 1, 0);
+		printf("\n%c = EDRFGVHJU\n", c);
 		return (1);
 	}
 	return (0);

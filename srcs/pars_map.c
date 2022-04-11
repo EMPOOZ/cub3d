@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:40:01 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 19:30:31 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/10 15:07:17 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,12 @@ int	parce_map_closed1(t_zone *zone, int x)
 	while (zone->matrice_help[x + y * zone->width] == ' ')
 		y++;
 	if (zone->matrice_help[x + y * zone->width] != '1')
-	{
-		printf ("\n%d = w\n", zone->width);
-		printf ("\n%d = x\n", x);
-		printf ("\n%d = y\n", y);
-		printf ("\n%s = y\n", zone->matrice_help);
-		printf ("\n%d = pizda2\n", x + y * zone->width);
 		return (0);
-	}
 	y = zone->height - 1;
 	while (zone->matrice_help[x + y * zone->width] == ' ')
 		y--;
 	if (zone->matrice_help[x + y * zone->width] != '1')
-	{
-		printf ("\npizda3\n");
 		return (0);
-	}
 	return (1);
 }
 
@@ -77,29 +67,19 @@ int	parse_maphelp(t_zone *zone)
 	int	i;
 
 	i = 0;
-	printf ("\n%zu =  matr\n", ft_strlen(zone->matrice_help));
 	while (i < zone->height)
 	{
 		if (!parce_map_closed2(zone, i))
-		{
-			printf ("\nxyi\n");
 			return (0);
-		}
 		i++;
 	}
 	i = 0;
 	while (i < zone->height)
-	{
-		printf("%s\n", zone->matrice[i]);
 		i++;
-	}
 	while (i < zone->width)
 	{
 		if (!parce_map_closed1(zone, i))
-		{
-			printf ("\npizda\n");
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -145,10 +125,7 @@ int	parce_map(t_zone *zone)
 		a++;
 	}
 	if (parse_maphelp(zone) == 0)
-	{
-		printf("error matrice2\n");
 		return (0);
-	}
 	qwe = search_wh(zone, qwe);
 	if (qwe == 0)
 		return (0);

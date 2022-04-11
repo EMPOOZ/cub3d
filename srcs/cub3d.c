@@ -6,7 +6,7 @@
 /*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 19:17:56 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/10 18:33:04 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ int	main(int argc, char **argv)
 		exit_free(zone, draw, "no cub\n");
 	gnl_help(zone, file);
 	if (parce_map(zone) == 0)
-		return (1);
+		exit_free(zone, draw, NULL);
 	map_int(zone);
 	game_play(zone, draw, file);
+	exit_free(zone, draw, NULL);
 	return (0);
 }
