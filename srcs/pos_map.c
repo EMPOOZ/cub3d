@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:19:30 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/10 19:43:04 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/11 16:36:06 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,32 @@
 void	vector(t_draw *draw, int y, int x)
 {
 	draw->dir_x = x;
+	if (x == -1.0)
+	{
+		draw->plane_y = 0.66;
+		draw->plane_x = 0;
+	}
+	else if (x == 1.0)
+	{
+		draw->plane_y = -0.66;
+		draw->plane_x = 0;
+	}
 	draw->dir_y = y;
+	if (y == -1.0)
+	{
+		draw->plane_y = 0;
+		draw->plane_x = 0.66;
+	}
+	else if (y == 1.0)
+	{
+		draw->plane_y = 0;
+		draw->plane_x = -0.66;
+	}
 }
 
 int	parse_is_player(t_zone *zone, char c)
 {
 	zone->c1 = c;
-	ft_putchar_fd(zone->c1, 1);
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
 		if (c == 'N')
@@ -93,7 +112,6 @@ int	pos_map(t_zone *zone, int x, int y, int *player_found)
 	}
 	else if (parse_is_player(zone, zone->matrice_help[x + y * zone->width]))
 	{
-		ft_putnbr_fd(x + y * zone->width, 1);
 		if (*player_found > 0 || !parse_floor(zone, x, y, ' '))
 			return (0);
 		*player_found = 1;

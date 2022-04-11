@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:29:18 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/09 19:17:56 by rmicheli         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:35:02 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (error_input("error arguments"));
 	if (!cub_init(zone, draw))
-		exit_free(zone, draw, "error init\n");
+		exit_error("error init\n");
 	file = open(argv[1], O_RDWR);
 	if (check_cub(argv[1]) == 0)
-		exit_free(zone, draw, "no cub\n");
+		exit_error("no cub\n");
 	gnl_help(zone, file);
 	if (parce_map(zone) == 0)
-		return (1);
+		exit_error("map error\n");
 	map_int(zone);
 	game_play(zone, draw, file);
 	return (0);

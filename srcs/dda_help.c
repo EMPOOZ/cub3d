@@ -6,19 +6,11 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/09 13:27:28 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/11 15:40:11 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	draw_background(t_zone *zone)
-{
-	int	*image;
-
-	ft_bzero(zone->mlx->addr, 1000 * 1000 * (zone->mlx->bits_per_pixel / 8));
-	image = (int *)(zone->mlx->addr);
-}
 
 void	texture_init(t_draw *draw, t_zone *zone, t_texture_draw *text_draw)
 {

@@ -6,15 +6,15 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/08 17:56:10 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/11 17:17:32 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	parser4(char *str, t_zone *zone, int a)
+int	parser4(char *str, t_zone *zone, int *a)
 {
-	if (a >= 6)
+	if (*a >= 6)
 	{
 		if (zone->matrice_help == NULL)
 			zone->matrice_help = ft_strdup(str);
@@ -26,25 +26,24 @@ int	parser4(char *str, t_zone *zone, int a)
 	return (1);
 }
 
-int	parser3(char *str, t_zone *zone, int a)
+int	parser3(char *str, t_zone *zone, int *a)
 {
-	int		i[2];
 	char	**str2;
 
-	i[0] = 0;
-	i[1] = 0;
-	if (str[i[0]] == 'F')
+	if (str[0] == 'F' && zone->f == NULL)
 	{
 		str2 = ft_split(str, ' ');
 		zone->f = ft_strdup(str2[1]);
 		free_string1(str2);
+		(*a)++;
 		return (1);
 	}
-	else if (str[i[0]] == 'C')
+	else if (str[0] == 'C' && zone->c == NULL)
 	{
 		str2 = ft_split(str, ' ');
 		zone->c = ft_strdup(str2[1]);
 		free_string1(str2);
+		(*a)++;
 		return (1);
 	}
 	else
@@ -53,24 +52,24 @@ int	parser3(char *str, t_zone *zone, int a)
 	return (0);
 }
 
-int	parser2(char *str, t_zone *zone, int a)
+int	parser2(char *str, t_zone *zone, int *a)
 {
-	int		i;
 	char	**str2;
 
-	i = 0;
-	if (str[i] == 'W' && str[i + 1] == 'E')
+	if (str[0] == 'W' && str[1] == 'E' && zone->we == NULL)
 	{
 		str2 = ft_split(str, ' ');
 		zone->we = ft_strdup(str2[1]);
 		free_string1(str2);
+		(*a)++;
 		return (1);
 	}
-	else if (str[i] == 'E' && str[i + 1] == 'A')
+	else if (str[0] == 'E' && str[1] == 'A' && zone->ea == NULL)
 	{
 		str2 = ft_split(str, ' ');
 		zone->ea = ft_strdup(str2[1]);
 		free_string1(str2);
+		(*a)++;
 		return (1);
 	}
 	else
@@ -79,24 +78,24 @@ int	parser2(char *str, t_zone *zone, int a)
 	return (0);
 }
 
-int	parser(char *str, t_zone *zone, int a)
+int	parser(char *str, t_zone *zone, int *a)
 {
-	int		i;
 	char	**str2;
 
-	i = 0;
-	if (str[i] == 'N' && str[i + 1] == 'O')
+	if (str[0] == 'N' && str[1] == 'O' && zone->no == NULL)
 	{
 		str2 = ft_split(str, ' ');
 		zone->no = ft_strdup(str2[1]);
 		free_string1(str2);
+		(*a)++;
 		return (1);
 	}
-	else if (str[i] == 'S' && str[i + 1] == 'O')
+	else if (str[0] == 'S' && str[1] == 'O' && zone->so == NULL)
 	{
 		str2 = ft_split(str, ' ');
 		zone->so = ft_strdup(str2[1]);
 		free_string1(str2);
+		(*a)++;
 		return (1);
 	}
 	else
@@ -122,9 +121,11 @@ void	gnl_help(t_zone *zone, int file)
 			break ;
 		if (ft_strncmp(str, "\n", 1) != 0)
 		{
-			if (parser(str, zone, a) == 0)
+			if (parser(str, zone, &a) == 0)
+			{
+				printf("ERROR\n");
 				exit(1);
-			a++;
+			}
 		}
 	}
 	free (str);

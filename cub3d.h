@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/10 19:01:18 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/11 17:09:14 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_rgb
 
 typedef struct s_zone
 {
-	int			c1;
+	char		c1;
 	int			pos_y;
 	int			pos_x;
 	int			image_y;
@@ -128,7 +128,6 @@ void	gnl_help(t_zone *zone, int file);
 int		parce_map(t_zone *zone);
 void	free_string1(char **u);
 void	map_int(t_zone *zone);
-void	create_window1(t_mlx *mlx);
 void	*ft_free(void *ptr);
 int		pars_texture(char *path, int side, t_zone *zone);
 t_rgb	new_rgb(int r, int g, int b);
@@ -136,7 +135,7 @@ int		color_valid_rgb(t_rgb rgb);
 void	*array_clear(void **ptr, void *(f)(void *));
 int		array_s(void **str);
 void	search_zone(t_zone *zone);
-void	create_window(t_mlx *mlx);
+int		create_window(t_mlx *mlx);
 int		rendering(t_zone *zone);
 void	dda(t_draw *draw, t_zone *zone);
 void	draw_init(t_draw *draw, t_zone *zone);
@@ -157,7 +156,7 @@ void	rotate(int key, t_zone *zone);
 int		search_wh(t_zone *zone, int qwe);
 int		error_input(char *str);
 int		cub_init(t_zone *zone, t_draw *draw);
-void	exit_free(t_zone *zone, t_draw *draw, char *error);
+void	exit_error(char *error);
 void	init_img(t_zone *zone);
 
 #endif

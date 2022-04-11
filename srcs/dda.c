@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/09 11:59:19 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/11 15:39:48 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	dda(t_draw *draw, t_zone *zone)
 	int			x;
 
 	x = -1;
-	draw_background(zone);
 	draw_other(zone);
 	while (++x < 1000)
 	{
