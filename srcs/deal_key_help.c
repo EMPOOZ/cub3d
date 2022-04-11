@@ -6,7 +6,7 @@
 /*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 19:12:46 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/09 12:03:37 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/10 19:13:40 by tconwy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	rotate_right(t_zone *zone)
 
 void	rotate(int key, t_zone *zone)
 {
-	if (key == 123)
+	if ((key == 123 && (zone->c1 == 'N' || zone->c1 == 'S'))
+		|| (key == 124 && (zone->c1 == 'W' || zone->c1 == 'E')))
 		rotate_left(zone);
-	if (key == 124)
+	if ((key == 124 && (zone->c1 == 'N' || zone->c1 == 'S'))
+		|| (key == 123 && (zone->c1 == 'W' || zone->c1 == 'E')))
 		rotate_right(zone);
 }
