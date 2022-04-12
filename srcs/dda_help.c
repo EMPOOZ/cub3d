@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   dda_help.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:15:37 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/11 15:40:11 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/12 13:09:52 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	texture_init(t_draw *draw, t_zone *zone, t_texture_draw *text_draw)
+void	texture_init(t_draw *draw, t_texture_draw *text_draw)
 {
 	if (draw->side == 0)
-		text_draw->wall_x = zone->draw->pos_y + draw->perp_wall_dist
+		text_draw->wall_x = draw->pos_y + draw->perp_wall_dist
 			* draw->ray_dir_y;
 	else
-		text_draw->wall_x = zone->draw->pos_x + draw->perp_wall_dist
+		text_draw->wall_x = draw->pos_x + draw->perp_wall_dist
 			* draw->ray_dir_x;
 	text_draw->wall_x -= floor((text_draw->wall_x));
 	text_draw->tex_x = (int)(text_draw->wall_x
-			* (double)32.0);
+			* 32.0);
 	if (draw->side == 0 && draw->ray_dir_x > 0)
 		text_draw->tex_x = 32.0
 			- text_draw->tex_x - 1;
@@ -60,7 +60,7 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x)
 	int				color;
 	int				y;
 
-	texture_init(draw, zone, &text_draw);
+	texture_init(draw, &text_draw);
 	y = draw->draw_start;
 	while (y < draw->draw_end + 1)
 	{
@@ -72,7 +72,7 @@ void	draw_texture(t_draw *draw, t_zone *zone, int x)
 		color = color_shift_int(color, 0x000000,
 				((1000 - draw->perp_wall_dist) / 1000) / 2);
 		if (x >= 0 && x < 1000)
-			my_mlx_pixel_put(zone->mlx, x, y + draw->perp_wall_dist, color);
+			my_mlx_pixel_put(zone->mlx, x, y, color);
 		y++;
 	}
 }

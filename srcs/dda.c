@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:22:16 by rmicheli          #+#    #+#             */
-/*   Updated: 2022/04/11 15:39:48 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/12 12:48:08 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,8 @@ void	dda_init(t_draw *draw, int x)
 	draw->camera_x = 2 * x / (double)1000 - 1;
 	draw->ray_dir_x = draw->dir_x + draw->plane_x * draw->camera_x;
 	draw->ray_dir_y = draw->dir_y + draw->plane_y * draw->camera_x;
-	if (draw->ray_dir_x == 0)
-		draw->delta_dist_x = 1e30;
-	else
-		draw->delta_dist_x = fabs(1 / draw->ray_dir_x);
-	if (draw->ray_dir_y == 0)
-		draw->delta_dist_y = 1e30;
-	else
-		draw->delta_dist_y = fabs(1 / draw->ray_dir_y);
+	draw->delta_dist_x = fabs(1 / draw->ray_dir_x);
+	draw->delta_dist_y = fabs(1 / draw->ray_dir_y);
 	draw->map_x = (int)draw->pos_x;
 	draw->map_y = (int)draw->pos_y;
 	draw->hit = 0;

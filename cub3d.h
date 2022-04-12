@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:47:37 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/11 17:09:14 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/12 12:34:57 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ void	draw_init(t_draw *draw, t_zone *zone);
 void	draw_texture(t_draw *draw, t_zone *zone, int x);
 void	verline(int x, t_draw *draw, t_zone *zone);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-void	draw_background(t_zone *zone);
 int		deal_key(int key, t_zone *zone);
 int		color_get(t_img img, int x, int y);
 int		color_shift_int(int base, int shift, double force);
@@ -158,5 +157,6 @@ int		error_input(char *str);
 int		cub_init(t_zone *zone, t_draw *draw);
 void	exit_error(char *error);
 void	init_img(t_zone *zone);
+void	correct_map(t_zone *zone);
 
 #endif

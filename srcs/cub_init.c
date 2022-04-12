@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 13:37:47 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/11 15:35:43 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/11 19:26:19 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,28 @@ int	cub_init(t_zone *zone, t_draw *draw)
 	zone->draw = draw;
 	zone->matrice_help = NULL;
 	return (1);
+}
+
+void	correct_map(t_zone *zone)
+{
+	int	i;
+	int	s;
+
+	i = 0;
+	s = 0;
+	while (zone->matrice_help[i])
+	{
+		if (zone->matrice_help[i] != '1' && zone->matrice_help[i] != '0'
+			&& zone->matrice_help[i] != ' ' && zone->matrice_help[i] != '\n')
+		{
+			printf("%c = char\n", zone->matrice_help[i]);
+			if ((zone->matrice_help[i] == 'W' || zone->matrice_help[i] == 'N'
+					|| zone->matrice_help[i] == 'S'
+					|| zone->matrice_help[i] == 'E') && s == 0)
+				s = 1;
+			else
+				exit_error ("map error");
+		}
+		i++;
+	}
 }

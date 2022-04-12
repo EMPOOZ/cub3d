@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tconwy <tconwy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmicheli <rmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:53:02 by tconwy            #+#    #+#             */
-/*   Updated: 2022/04/11 17:17:32 by tconwy           ###   ########.fr       */
+/*   Updated: 2022/04/11 19:26:37 by rmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ void	gnl_help(t_zone *zone, int file)
 			}
 		}
 	}
+	correct_map(zone);
 	free (str);
 }
